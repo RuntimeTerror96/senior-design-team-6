@@ -29,7 +29,7 @@ from skimage.color import rgb2hsv,rgb2gray
 from skimage import feature
 from skimage.filters import threshold_otsu
 from skimage import feature
-
+from utils import detect_lines
 print("python version: ",sys.version)
 print("numpy version: ",np.__version__)
 print("skiamge version: ",skimage.__version__)
@@ -64,7 +64,8 @@ def main():
     extract_lines()
     #this is the idea I have for line detection 
     #TODO add more functions for image processing     
-
+    rgb_img = io.imread("test_pic.png")
+    using_open_cv = detect_lines(rgb_img)
 
 if __name__ == "__main__":
     main()
