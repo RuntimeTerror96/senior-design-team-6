@@ -30,6 +30,7 @@ from skimage import feature
 from skimage.filters import threshold_otsu
 from skimage import feature
 from utils import detect_lines
+from utils import extract_lines_v2
 print("python version: ",sys.version)
 print("numpy version: ",np.__version__)
 print("skiamge version: ",skimage.__version__)
@@ -61,11 +62,24 @@ def extract_lines():
     io.imsave("edge_example.png",edge)
 
 def main():
-    extract_lines()
-    #this is the idea I have for line detection 
+    #///////////////////////////////////////////////////////////////////////////
+    #extract_lines()
+    #this is the idea I have for line detection un comment this code for the demo 
+    #////////////////////////////////////////////////////////////////////////////
+    
     #TODO add more functions for image processing     
-    rgb_img = io.imread("test_pic.png")
-    using_open_cv = detect_lines(rgb_img)
+    
+    #///////////////////////////////////////
+    #rgb_img = io.imread("test_pic.png")
+    #using_open_cv = detect_lines(rgb_img)
+    #rgb_img2 = io.imread("IMG_2773.jpg")
+    #using_open_cv - detect_lines(rgb_img2)
+    #//////////////////////////////////////
+    #this is for testing open cv method of line detection in the util detect lines function 
+
+    rgb_img_2 = io.imread("IMG_2773.jpg")
+    #extract_lines_v2(rgb_img_2) 
+    blue_mask = detect_lines(rgb_img_2)
 
 if __name__ == "__main__":
     main()
