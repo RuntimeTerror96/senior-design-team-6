@@ -31,43 +31,20 @@ from skimage.filters import threshold_otsu
 from skimage import feature
 from utils import detect_lines
 from utils import extract_lines_v2
+from utils import extract_lines
 print("python version: ",sys.version)
 print("numpy version: ",np.__version__)
 print("skiamge version: ",skimage.__version__)
 
 # driver code
 
-def extract_lines():
-    rgb_img = io.imread("test_pic.png")
-    hsv_img = rgb2hsv(rgb_img)
-    gray_img = rgb2gray(rgb_img) 
-    
-    #hue_img = hsv_img[:, :, 0]
-    #value_img = hsv_img[:, :, 2]
-    #this is how you get the hue or value for HSV images 
-    # rgb2gray converts image to gray scale
-    #more on color can be read here 
-    # https://dillhoffaj.utasites.cloud/posts/color/ 
-    io.imsave("rgb_to_hsv_example.png", hsv_img)
-    io.imsave("rgb2gray.png",gray_img)
-    
-    # we want to threshold the hsv img so that we can filter some junk out 
-    # the goal is to just have 2 lines then we can do a edge detection to 
-    # find these lines 
-    thresh = threshold_otsu(rgb2gray(hsv_img))
-    binary = rgb2gray(hsv_img) > thresh
-    io.imsave("binary_of_threshold.png",binary)
-    #here we can do more stuff to the image to get a better detection 
-    edge = feature.canny(binary)
-    io.imsave("edge_example.png",edge)
-
 def main():
     #///////////////////////////////////////////////////////////////////////////
     #extract_lines()
     #this is the idea I have for line detection un comment this code for the demo 
+    # this method was moved to utils 
     #////////////////////////////////////////////////////////////////////////////
     
-    #TODO add more functions for image processing     
     
     #///////////////////////////////////////
     #rgb_img = io.imread("test_pic.png")
@@ -80,7 +57,7 @@ def main():
     rgb_img_2 = io.imread("IMG_2773.jpg")
     #extract_lines_v2(rgb_img_2) 
     blue_mask = detect_lines(rgb_img_2)
-
+    #current way of detecting lines using open CV 
 if __name__ == "__main__":
     main()
 
