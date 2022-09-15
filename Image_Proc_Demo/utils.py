@@ -15,8 +15,8 @@
 # Revision History:
 # Date       | Engineer     | Description
 # -----------|--------------|--------------------------------
-# 09-10-2022 | Mann, P.    | Initial Release
-#
+# 09-10-2022 | Mann, P.     | Initial Release
+# 09-14-2022 | Mann, P.     | Added functions 
 #============================================================
 
 
@@ -42,6 +42,8 @@ from skimage import feature
 
 def detect_lines_old(frame): 
     into_hsv =cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)
+    #blue_lower=np.array([100,150,0],np.uint8)
+    #blue_upper=np.array([140,255,255],np.uint8) 
     
     L_limit=np.array([98,50,50]) # setting the blue lower limit
     U_limit=np.array([139,255,255]) # setting the blue upper limit
@@ -56,10 +58,9 @@ def detect_lines_old(frame):
     return lines 
 def detect_lines(frame): 
     into_hsv =cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)
-     
-    into_hsv =cv2.cvtColor(into_hsv,cv2.COLOR_BGR2HSV)
-    L_limit=np.array([10,100,20]) # setting the orange lower limit
-    U_limit=np.array([25,255,255]) # setting the orange upper limit
+    
+    L_limit=np.array([0,50,50]) # setting the orange lower limit
+    U_limit=np.array([30,255,255]) # setting the orange upper limit
  
     o_mask=cv2.inRange(into_hsv,L_limit,U_limit)
     orange=cv2.bitwise_and(frame,frame,mask=o_mask)
