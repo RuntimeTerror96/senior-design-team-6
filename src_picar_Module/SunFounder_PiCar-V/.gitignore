@@ -1,0 +1,7 @@
+*.pyc
+*.log
+*auto_ip.inf
+.vscode
+*.ai
+*.indd
+docs/build/*
