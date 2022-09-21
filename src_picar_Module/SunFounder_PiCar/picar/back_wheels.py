@@ -54,6 +54,11 @@ class Back_Wheels(object):
 
 		self._speed = 0
 
+		self.training_mode = int(self.db.get('training_status', default_value=0)) 
+
+		if self.training_mode != 1:
+			self.training_mode = 0
+
 		self.debug = debug
 		self._debug_('Set left wheel to #%d, PWM channel to %d' % (self.Motor_A, self.PWM_A))
 		self._debug_('Set right wheel to #%d, PWM channel to %d' % (self.Motor_B, self.PWM_B))
@@ -67,18 +72,24 @@ class Back_Wheels(object):
 		self.left_wheel.forward()
 		self.right_wheel.forward()
 		self._debug_('Running forward')
+		if self.training_mode == 1:	
+			self.db.set('bw_status',1)
 
 	def backward(self):
 		''' Move both wheels backward '''
 		self.left_wheel.backward()
 		self.right_wheel.backward()
 		self._debug_('Running backward')
+		if self.training_mode == 1:	
+			self.db.set('bw_status',-1)
 
 	def stop(self):
 		''' Stop both wheels '''
 		self.left_wheel.stop()
 		self.right_wheel.stop()
 		self._debug_('Stop')
+		if self.training_mode == 1:
+			self.db.set('bw_status',0)
 
 	@property
 	def speed(self, speed):

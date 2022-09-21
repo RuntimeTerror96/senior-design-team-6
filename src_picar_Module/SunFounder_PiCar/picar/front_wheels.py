@@ -13,6 +13,7 @@
 '''
 from .SunFounder_PCA9685 import Servo
 from .import filedb
+from .import wheel_status
 
 class Front_Wheels(object):
 	''' Front wheels control class '''
@@ -28,7 +29,7 @@ class Front_Wheels(object):
 		self._straight_angle = 90
 		self.turning_max = 45
 		self._turning_offset = int(self.db.get('turning_offset', default_value=0))
-
+		self.training_mode = int(self.db.get('training_status', default_value=0)) 
 		self.wheel = Servo.Servo(self._channel, bus_number=bus_number, offset=self.turning_offset)
 		self.debug = debug
 		self._debug_('Front wheel PWM channel: %s' % self._channel)
@@ -36,6 +37,9 @@ class Front_Wheels(object):
 
 		self._angle = {"left":self._min_angle, "straight":self._straight_angle, "right":self._max_angle}
 		self._debug_('left angle: %s, straight angle: %s, right angle: %s' % (self._angle["left"], self._angle["straight"], self._angle["right"]))
+		
+		if self.training_mode != 1:
+			self.training_mode = 0
 
 	def _debug_(self,message):
 		if self._DEBUG:
@@ -45,16 +49,22 @@ class Front_Wheels(object):
 		''' Turn the front wheels left '''
 		self._debug_("Turn left")
 		self.wheel.write(self._angle["left"])
+		if self.training_mode == 1:
+			self.db.set('fw_status',-1)
 
 	def turn_straight(self):
 		''' Turn the front wheels back straight '''
 		self._debug_("Turn straight")
 		self.wheel.write(self._angle["straight"])
+		if self.training_mode == 1:
+			self.db.set('fw_status',0)
 
 	def turn_right(self):
 		''' Turn the front wheels right '''
 		self._debug_("Turn right")
 		self.wheel.write(self._angle["right"])
+		if self.training_mode == 1:	
+			self.db.set('fw_status',1)
 
 	def turn(self, angle):
 		''' Turn the front wheels to the giving angle '''
