@@ -1,0 +1,15 @@
+[submodule "src_piCar_module/-b"]
+	path = src_piCar_module/-b
+	url = https://github.com/sunfounder/SunFounder_PiCar-V
+[submodule "src_piCar_module/SunFounder_PiCar-V"]
+	path = src_piCar_module/SunFounder_PiCar-V
+	url = https://github.com/sunfounder/SunFounder_PiCar-V
+[submodule "src_piCar_module/SunFounder_PiCar"]
+	path = src_piCar_module/SunFounder_PiCar
+	url = https://github.com/sunfounder/SunFounder_PiCar.git
+[submodule "src_picar_Module/SunFounder_PiCar"]
+	path = src_picar_Module/SunFounder_PiCar
+	url = https://github.com/sunfounder/SunFounder_PiCar.git
+[submodule "src_picar_Module/SunFounder_PiCar-V"]
+	path = src_picar_Module/SunFounder_PiCar-V
+	url = https://github.com/sunfounder/SunFounder_PiCar-V.git
