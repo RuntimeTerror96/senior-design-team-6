@@ -2,9 +2,16 @@ forward_A = 0
 
 forward_B = 0
 
-turning_offset = -21
+turning_offset = -7
 
-pan_offset = -23
+pan_offset = -31
 
-tilt_offset = 18
+tilt_offset = -10
+
+fw_status = 0
+
+bw_status = 0
+
+training_status = 1
+
 
