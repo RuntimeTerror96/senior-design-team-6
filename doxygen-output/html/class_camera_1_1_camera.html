@@ -68,6 +68,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_camera_1_1_camera-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Camera.Camera Class Reference</div></div>
 </div><!--header-->
@@ -78,14 +79,48 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a76a1fc09a03cc16dacf3c44f0d40dd1f"><td class="memItemLeft" align="right" valign="top"><a id="a76a1fc09a03cc16dacf3c44f0d40dd1f" name="a76a1fc09a03cc16dacf3c44f0d40dd1f"></a>
-None&#160;</td><td class="memItemRight" valign="bottom"><b>__init__</b> (self)</td></tr>
-<tr class="separator:a76a1fc09a03cc16dacf3c44f0d40dd1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e748aec0f8fe4bd03ea63e55bf5627b"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera_1_1_camera.html#a2e748aec0f8fe4bd03ea63e55bf5627b">__new__</a> (cls)</td></tr>
+<tr class="memdesc:a2e748aec0f8fe4bd03ea63e55bf5627b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor enforcing the singleton pattern.  <a href="class_camera_1_1_camera.html#a2e748aec0f8fe4bd03ea63e55bf5627b">More...</a><br /></td></tr>
+<tr class="separator:a2e748aec0f8fe4bd03ea63e55bf5627b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a75ad18300323091000dd197c6a6c0426"><td class="memItemLeft" align="right" valign="top"><a id="a75ad18300323091000dd197c6a6c0426" name="a75ad18300323091000dd197c6a6c0426"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>instance</b></td></tr>
+<tr class="separator:a75ad18300323091000dd197c6a6c0426"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >This class contains driver code for interfacing with the camera. </p>
 <p ><a class="el" href="class_camera_1_1_camera.html" title="This class contains driver code for interfacing with the camera.">Camera</a> is a singleton class so only one istance of a <a class="el" href="class_camera_1_1_camera.html" title="This class contains driver code for interfacing with the camera.">Camera</a> object can be created. This class contains all needed functions to connect to and interface with the camera. </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a2e748aec0f8fe4bd03ea63e55bf5627b" name="a2e748aec0f8fe4bd03ea63e55bf5627b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e748aec0f8fe4bd03ea63e55bf5627b">&#9670;&nbsp;</a></span>__new__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def Camera.Camera.__new__ </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>cls</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default constructor enforcing the singleton pattern. </p>
+<p >If a <a class="el" href="class_camera_1_1_camera.html" title="This class contains driver code for interfacing with the camera.">Camera</a> object already exists, this function returns a reference to that object. Else, it creates a new <a class="el" href="class_camera_1_1_camera.html" title="This class contains driver code for interfacing with the camera.">Camera</a> object. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="class_camera_1_1_camera.html" title="This class contains driver code for interfacing with the camera.">Camera</a></td><td>cls - The object being created (leave this blank when calling the function) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_camera_1_1_camera.html" title="This class contains driver code for interfacing with the camera.">Camera</a> cls - A <a class="el" href="class_camera_1_1_camera.html" title="This class contains driver code for interfacing with the camera.">Camera</a> object </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/Camera.py</li>
 </ul>
 </div><!-- contents -->
