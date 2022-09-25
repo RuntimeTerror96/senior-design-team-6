@@ -1,0 +1,45 @@
+\hypertarget{namespaceremote__control_1_1urls}{}\doxysection{remote\+\_\+control.\+urls Namespace Reference}
+\label{namespaceremote__control_1_1urls}\index{remote\_control.urls@{remote\_control.urls}}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+list \mbox{\hyperlink{namespaceremote__control_1_1urls_ad90daf69379895802dc02519e730cb3d}{urlpatterns}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}remote_control URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/1.9/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.conf.urls import url, include
+    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceremote__control_1_1urls_ad90daf69379895802dc02519e730cb3d}\label{namespaceremote__control_1_1urls_ad90daf69379895802dc02519e730cb3d}} 
+\index{remote\_control.urls@{remote\_control.urls}!urlpatterns@{urlpatterns}}
+\index{urlpatterns@{urlpatterns}!remote\_control.urls@{remote\_control.urls}}
+\doxysubsubsection{\texorpdfstring{urlpatterns}{urlpatterns}}
+{\footnotesize\ttfamily list remote\+\_\+control.\+urls.\+urlpatterns}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 =  [}
+\DoxyCodeLine{2     url(\textcolor{stringliteral}{r'\string^admin/'}, admin.site.urls),}
+\DoxyCodeLine{3     url(\textcolor{stringliteral}{r'\string^\$'}, views.home),}
+\DoxyCodeLine{4     url(\textcolor{stringliteral}{r'\string^run/\$'}, views.run),}
+\DoxyCodeLine{5     url(\textcolor{stringliteral}{r'\string^cali/\$'}, views.cali),}
+\DoxyCodeLine{6     url(\textcolor{stringliteral}{r'\string^connection\_test/\$'}, views.connection\_test),}
+\DoxyCodeLine{7 ]}
+
+\end{DoxyCode}

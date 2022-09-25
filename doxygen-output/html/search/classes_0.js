@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['myclass_0',['MyClass',['../classdoxygen-example_1_1_my_class.html',1,'doxygen-example']]]
+  ['_5fcontrol_0',['_control',['../struct__control.html',1,'']]],
+  ['_5fglobals_1',['_globals',['../struct__globals.html',1,'']]]
 ];

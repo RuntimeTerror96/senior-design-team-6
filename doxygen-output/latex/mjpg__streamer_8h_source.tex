@@ -1,0 +1,98 @@
+\hypertarget{mjpg__streamer_8h_source}{}\doxysection{mjpg\+\_\+streamer.\+h}
+\label{mjpg__streamer_8h_source}\index{src\_picar\_Module/SunFounder\_PiCar-\/V/mjpg-\/streamer/mjpg\_streamer.h@{src\_picar\_Module/SunFounder\_PiCar-\/V/mjpg-\/streamer/mjpg\_streamer.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{2 \textcolor{comment}{\#                                                                              \#}}
+\DoxyCodeLine{3 \textcolor{comment}{\#      MJPG-\/streamer allows to stream JPG frames from an input-\/plugin          \#}}
+\DoxyCodeLine{4 \textcolor{comment}{\#      to several output plugins                                               \#}}
+\DoxyCodeLine{5 \textcolor{comment}{\#                                                                              \#}}
+\DoxyCodeLine{6 \textcolor{comment}{\#      Copyright (C) 2007 Tom Stöveken                                         \#}}
+\DoxyCodeLine{7 \textcolor{comment}{\#                                                                              \#}}
+\DoxyCodeLine{8 \textcolor{comment}{\# This program is free software; you can redistribute it and/or modify         \#}}
+\DoxyCodeLine{9 \textcolor{comment}{\# it under the terms of the GNU General Public License as published by         \#}}
+\DoxyCodeLine{10 \textcolor{comment}{\# the Free Software Foundation; version 2 of the License.                      \#}}
+\DoxyCodeLine{11 \textcolor{comment}{\#                                                                              \#}}
+\DoxyCodeLine{12 \textcolor{comment}{\# This program is distributed in the hope that it will be useful,              \#}}
+\DoxyCodeLine{13 \textcolor{comment}{\# but WITHOUT ANY WARRANTY; without even the implied warranty of               \#}}
+\DoxyCodeLine{14 \textcolor{comment}{\# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                \#}}
+\DoxyCodeLine{15 \textcolor{comment}{\# GNU General Public License for more details.                                 \#}}
+\DoxyCodeLine{16 \textcolor{comment}{\#                                                                              \#}}
+\DoxyCodeLine{17 \textcolor{comment}{\# You should have received a copy of the GNU General Public License            \#}}
+\DoxyCodeLine{18 \textcolor{comment}{\# along with this program; if not, write to the Free Software                  \#}}
+\DoxyCodeLine{19 \textcolor{comment}{\# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-\/1307  USA    \#}}
+\DoxyCodeLine{20 \textcolor{comment}{\#                                                                              \#}}
+\DoxyCodeLine{21 \textcolor{comment}{*******************************************************************************/}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#ifndef MJPG\_STREAMER\_H}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#define MJPG\_STREAMER\_H}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#define SOURCE\_VERSION "{}2.0"{}}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{comment}{/* FIXME take a look to the output\_http clients thread marked with fixme if you want to set more then 10 plugins */}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#define MAX\_INPUT\_PLUGINS 10}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#define MAX\_OUTPUT\_PLUGINS 10}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#define MAX\_PLUGIN\_ARGUMENTS 32}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include <linux/types.h>}          \textcolor{comment}{/* for videodev2.h */}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include <linux/videodev2.h>}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#ifdef DEBUG}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#define DBG(...) fprintf(stderr, "{} DBG(\%s, \%s(), \%d): "{}}, \_\_FILE\_\_, \_\_FUNCTION\_\_, \_\_LINE\_\_); fprintf(stderr, \_\_VA\_ARGS\_\_)}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#define DBG(...)}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#define LOG(...) \{ char \_bf[1024] = \{0\}; snprintf(\_bf, sizeof(\_bf)-\/1, \_\_VA\_ARGS\_\_); fprintf(stderr, "{}\%s"{}}, \_bf); syslog(LOG\_INFO, "{}\%s"{}, \_bf); \}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#include "{}plugins/input.h"{}}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#include "{}plugins/output.h"{}}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{comment}{/* global variables that are accessed by all plugins */}}
+\DoxyCodeLine{46 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__globals}{\_globals}} \mbox{\hyperlink{struct__globals}{globals}};}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{comment}{/* an enum to identify the commands destination*/}}
+\DoxyCodeLine{49 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{50     Dest\_Input = 0,}
+\DoxyCodeLine{51     Dest\_Output = 1,}
+\DoxyCodeLine{52     Dest\_Program = 2,}
+\DoxyCodeLine{53 \} command\_dest;}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 \textcolor{comment}{/* commands which can be send to the input plugin */}}
+\DoxyCodeLine{56 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \_cmd\_group cmd\_group;}
+\DoxyCodeLine{57 \textcolor{keyword}{enum} \_cmd\_group \{}
+\DoxyCodeLine{58     IN\_CMD\_GENERIC = 0, \textcolor{comment}{// if you use non V4L2 input plugin you not need to deal the groups.}}
+\DoxyCodeLine{59     IN\_CMD\_V4L2 = 1,}
+\DoxyCodeLine{60     IN\_CMD\_RESOLUTION = 2,}
+\DoxyCodeLine{61     IN\_CMD\_JPEG\_QUALITY = 3,}
+\DoxyCodeLine{62 \};}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__control}{\_control}} \mbox{\hyperlink{struct__control}{control}};}
+\DoxyCodeLine{65 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__control}{\_control}} \{}
+\DoxyCodeLine{66     \textcolor{keyword}{struct }v4l2\_queryctrl ctrl;}
+\DoxyCodeLine{67     \textcolor{keywordtype}{int} value;}
+\DoxyCodeLine{68     \textcolor{keyword}{struct }v4l2\_querymenu *menuitems;}
+\DoxyCodeLine{69     \textcolor{comment}{/*  In the case the control a V4L2 ctrl this variable will specify}}
+\DoxyCodeLine{70 \textcolor{comment}{        that the control is a V4L2\_CTRL\_CLASS\_USER control or not.}}
+\DoxyCodeLine{71 \textcolor{comment}{        For non V4L2 control it is not acceptable, leave it 0.}}
+\DoxyCodeLine{72 \textcolor{comment}{    */}}
+\DoxyCodeLine{73     \textcolor{keywordtype}{int} class\_id;}
+\DoxyCodeLine{74     \textcolor{keywordtype}{int} group;}
+\DoxyCodeLine{75 \};}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77 \textcolor{keyword}{struct }\mbox{\hyperlink{struct__globals}{\_globals}} \{}
+\DoxyCodeLine{78     \textcolor{keywordtype}{int} stop;}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80     \textcolor{comment}{/* input plugin */}}
+\DoxyCodeLine{81     input in[MAX\_INPUT\_PLUGINS];}
+\DoxyCodeLine{82     \textcolor{keywordtype}{int} incnt;}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84     \textcolor{comment}{/* output plugin */}}
+\DoxyCodeLine{85     output out[MAX\_OUTPUT\_PLUGINS];}
+\DoxyCodeLine{86     \textcolor{keywordtype}{int} outcnt;}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88     \textcolor{comment}{/* pointer to control functions */}}
+\DoxyCodeLine{89     \textcolor{comment}{//int (*control)(int command, char *details);}}
+\DoxyCodeLine{90 \};}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
