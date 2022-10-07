@@ -114,7 +114,16 @@ class Camera(object):
 
         return
 
+# Debug
+if __name__ == "__main__":
+    cam = Camera()
 
+    cam.openCamera()
 
+    cam.startCamera()
+    #cam.captureData()
+
+    time.sleep(10)
+    cam.closeCamera()
 
     
