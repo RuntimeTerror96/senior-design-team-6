@@ -19,111 +19,63 @@
 #
 #============================================================
 
-import cv2 as cv
-import time
-from multiprocessing import Process
+import cv2
+from threading import Thread
+
+# TODO: update all comments
 
 ## @brief This class contains driver code for interfacing with the camera.
-## Camera is a singleton class so only one istance of a Camera object
-## can be created. This class contains all needed functions to connect
+## This class contains all needed functions to connect
 ## to and interface with the camera.
-class Camera(object):
+class Camera:
+    ## @brief Initialize the camera object and setup the stream.
+    ## @param Int camSrc - the identifier of the camera to be used. This will likely always be 0
+    def __init__(self, camSrc=0):
 
-    # Private variables
-    __videoSource = 0
-    __cam = None
-    __camProc = None
-    __myVar = 1
-
-    ## @brief Default constructor enforcing the singleton pattern.
-    ## If a Camera object already exists, this function returns a reference
-    ## to that object. Else, it creates a new Camera object.
-    ## @param Camera cls - The object being created (leave this blank when calling the function)
-    ## @return Camera cls - A Camera object
-    def __new__(cls):
-        if not hasattr(cls, 'instance'):
-            cls.instance = super(Camera, cls).__new__(cls)
-        return cls.instance
-    
-    def __init__(self):
-        self.__videoSource = 0
-        self.__cam = None
-        self.__camProc = None
-        self.__myVar = 1
-        pass
-
-    def openCamera(self):
-        # check to see if camera is already open
-        if self.__cam is not None:
-            print("WARN: Camera already open")
-            return
-
-        # open camera
-        self.__cam = cv.VideoCapture(self.__videoSource)
+        # Setup CV2 video capture
+        self.stream = cv2.VideoCapture(camSrc)
 
         # verify camera open success
-        if not self.__cam.isOpened():
+        if not self.stream.isOpened():
             print ("ERROR: Could not open camera.")
-            # TODO: exit program, return, do something, idk. also set status indicator light
+            # TODO: set status indicator light
 
-        # set the width and height of the video capture
-        frameWidth = 320
-        frameheight = 240
-        self.__cam.set(cv.CAP_PROP_FRAME_WIDTH, frameWidth)
-        self.__cam.set(cv.CAP_PROP_FRAME_HEIGHT, frameheight)
+        # set the width and height of the video
+        self.stream.set(cv2.CAP_PROP_FRAME_WIDTH,320) # width
+        self.stream.set(cv2.CAP_PROP_FRAME_HEIGHT,240) # height
 
-        self.__cam.set(cv.CAP_PROP_BUFFERSIZE,1)
-        cv.setUseOptimized(True)
+        # amount of frames stored in CV2's internal buffer at a time
+        self.stream.set(cv2.CAP_PROP_BUFFERSIZE,1)
 
-        return
+        # set cv2 to optimized mode (not really sure what this does)
+        cv2.setUseOptimized(True)
 
+        # read the first frame (not sure why but this needs to
+        # be done once before real video reading starts)
+        (self.captured, self.frame) = self.stream.read()
+
+        # variable to indicate the status of the capture. Set
+        # this to True to stop the capture.
+        self.stopped = False
+
+    ## @brief Spawns a new thread to run the camera stream.
+    ## @return The camera object running in the new thread.
     def startCamera(self):
-        self.__camProc = Process(target=Camera.captureData(self))
-        self.__camProc.start()
+        Thread(target=self.captureFrame, args=()).start()
+        return self
 
-    def captureData(self):
-        self.__myVar = 2
-        while self.__cam.isOpened():
-            ret, frame = self.__cam.read()
-            cv.imshow('frame', frame)
+    ## @brief Reads (captures) a frame from the stream.
+    def captureFrame(self):
 
-    # TODO: for multi process, this function probably needs to stop the process.
-    def closeCamera(self):
+        while not self.stopped:
+            if not self.captured:
+                self.stopCamera()
+            else:
+                (self.captured, self.frame) = self.stream.read()
 
-        print(self.__myVar)
+    ## @brief Stops the camera stream.
+    def stopCamera(self):
+        self.stopped = True
 
-        # kill the captureData process
-        if self.__camProc is not None and self.__camProc.is_alive():
-            # DEBUG
-            print("captureData is alive, terminating...")
-            self.__camProc.terminate()
-            print("captureData terminated")
-        else:
-            print("captureData was not alive.")
 
-        # if camera is not open, report a warning and return.
-        if not self.__cam.isOpened():
-            print ("WARN: Camera not open.")
-            return
-        
-        # else, close the connection.
-        self.__cam.release()
 
-        # DEBUG
-        print("returning from closeCamera")
-
-        return
-
-# Debug
-if __name__ == "__main__":
-    cam = Camera()
-
-    cam.openCamera()
-
-    cam.startCamera()
-    #cam.captureData()
-
-    time.sleep(10)
-    cam.closeCamera()
-
-    
