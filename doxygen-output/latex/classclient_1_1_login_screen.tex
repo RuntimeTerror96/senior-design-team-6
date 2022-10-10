@@ -1,0 +1,78 @@
+\hypertarget{classclient_1_1_login_screen}{}\doxysection{client.\+Login\+Screen Class Reference}
+\label{classclient_1_1_login_screen}\index{client.LoginScreen@{client.LoginScreen}}
+Inheritance diagram for client.\+Login\+Screen\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classclient_1_1_login_screen}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classclient_1_1_login_screen_a6447f5eade1e3f9954e10ed2287ada11}\label{classclient_1_1_login_screen_a6447f5eade1e3f9954e10ed2287ada11}} 
+def {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+def \mbox{\hyperlink{classclient_1_1_login_screen_a0c341ef7552df4dc92ffd9f4da7f2b2d}{on\+\_\+p\+Btn\+\_\+login\+\_\+clicked}} (self)
+\item 
+\mbox{\Hypertarget{classclient_1_1_login_screen_ae34bd7239a9b3e0d46fafc1d86cd22d9}\label{classclient_1_1_login_screen_ae34bd7239a9b3e0d46fafc1d86cd22d9}} 
+def {\bfseries on\+\_\+p\+Btn\+\_\+login\+\_\+pressed} (self)
+\item 
+\mbox{\Hypertarget{classclient_1_1_login_screen_a7ffe3f6a24bdcc92aced785e44e48cf0}\label{classclient_1_1_login_screen_a7ffe3f6a24bdcc92aced785e44e48cf0}} 
+def {\bfseries on\+\_\+p\+Btn\+\_\+login\+\_\+released} (self)
+\item 
+def \mbox{\hyperlink{classclient_1_1_login_screen_a97843d6aeb6be4f810caf24501db353e}{on\+\_\+p\+Btn\+\_\+checkbox\+\_\+clicked}} (self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Login Screen
+
+    To creat a Graphical User Interface, inherit from Ui_Login_screen. And define functions
+    that use for the control.
+
+    Attributes:
+        none\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classclient_1_1_login_screen_a97843d6aeb6be4f810caf24501db353e}\label{classclient_1_1_login_screen_a97843d6aeb6be4f810caf24501db353e}} 
+\index{client.LoginScreen@{client.LoginScreen}!on\_pBtn\_checkbox\_clicked@{on\_pBtn\_checkbox\_clicked}}
+\index{on\_pBtn\_checkbox\_clicked@{on\_pBtn\_checkbox\_clicked}!client.LoginScreen@{client.LoginScreen}}
+\doxysubsubsection{\texorpdfstring{on\_pBtn\_checkbox\_clicked()}{on\_pBtn\_checkbox\_clicked()}}
+{\footnotesize\ttfamily def client.\+Login\+Screen.\+on\+\_\+p\+Btn\+\_\+checkbox\+\_\+clicked (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Slot for checkbox button clicked signal
+
+        The checkbox button clicked, this function will run. This function use for autologin, 
+        when clicked, the status of autologin(check or not check) will changed, if autologin 
+        checked, save HOST and PORT, and next show this screen, line edit will auto fill with 
+        the saved value
+
+        Args:
+            None
+
+        #TODO: save the HOST and PORT to file in local\end{DoxyVerb}
+ \mbox{\Hypertarget{classclient_1_1_login_screen_a0c341ef7552df4dc92ffd9f4da7f2b2d}\label{classclient_1_1_login_screen_a0c341ef7552df4dc92ffd9f4da7f2b2d}} 
+\index{client.LoginScreen@{client.LoginScreen}!on\_pBtn\_login\_clicked@{on\_pBtn\_login\_clicked}}
+\index{on\_pBtn\_login\_clicked@{on\_pBtn\_login\_clicked}!client.LoginScreen@{client.LoginScreen}}
+\doxysubsubsection{\texorpdfstring{on\_pBtn\_login\_clicked()}{on\_pBtn\_login\_clicked()}}
+{\footnotesize\ttfamily def client.\+Login\+Screen.\+on\+\_\+p\+Btn\+\_\+login\+\_\+clicked (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Slot for signal that Login button clicked
+
+        The login button clicked, this function will run. This function use for logining,
+        first, check the length of text in line edit, if ok, saved them to variable HOST 
+        and PORT, after that, call function connection_ok(), if get 'OK' return, login 
+        succeed, close this screen, show running screen
+
+        Args:
+            None
+
+        Returns:
+            if login succeed return True
+            else return False\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src\+\_\+picar\+\_\+\+Module/\+Sun\+Founder\+\_\+\+Pi\+Car-\/\+V/client/client.\+py\end{DoxyCompactItemize}
