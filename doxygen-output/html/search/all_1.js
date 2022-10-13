@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['myclass_0',['MyClass',['../classdoxygen-example_1_1_my_class.html',1,'doxygen-example']]],
-  ['mymethod_1',['myMethod',['../classdoxygen-example_1_1_my_class.html#aa24e4167c283c5a7b6db5b8680c6587a',1,'doxygen-example::MyClass']]]
+  ['adc_3',['ADC',['../class_sun_founder___pi_car_1_1picar_1_1_a_d_c.html',1,'SunFounder_PiCar::picar']]]
 ];

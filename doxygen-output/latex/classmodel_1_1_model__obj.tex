@@ -1,0 +1,117 @@
+\hypertarget{classmodel_1_1_model__obj}{}\doxysection{model.\+Model\+\_\+obj Class Reference}
+\label{classmodel_1_1_model__obj}\index{model.Model\_obj@{model.Model\_obj}}
+
+
+This class makes a model object that can be trained.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmodel_1_1_model__obj_a9a3789d6cca5282557641b391bfc51c4}\label{classmodel_1_1_model__obj_a9a3789d6cca5282557641b391bfc51c4}} 
+def {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+def \mbox{\hyperlink{classmodel_1_1_model__obj_aa36389dacd7f3545a6be010d91af9f44}{make\+\_\+model}} (self)
+\begin{DoxyCompactList}\small\item\em Makes a new model for training. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classmodel_1_1_model__obj_a78be765c89fbbd4cc3fa3cdb012671a2}{train\+\_\+model}} (self)
+\begin{DoxyCompactList}\small\item\em Trains a model. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classmodel_1_1_model__obj_a0da0b1073c297d47b5a239e923e15c74}{get\+\_\+model\+\_\+summary}} (self)
+\begin{DoxyCompactList}\small\item\em Getter for model summary. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classmodel_1_1_model__obj_ab4bd678b6000cdb303007f9f47da788b}{model\+\_\+save}} (self, file\+\_\+name)
+\begin{DoxyCompactList}\small\item\em saves the self.\+model as a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmodel_1_1_model__obj_a4652d906284ce3da213f9a20396e1fef}\label{classmodel_1_1_model__obj_a4652d906284ce3da213f9a20396e1fef}} 
+{\bfseries model}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class makes a model object that can be trained. 
+
+It can also load a trained model and use it for predictions 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmodel_1_1_model__obj_a0da0b1073c297d47b5a239e923e15c74}\label{classmodel_1_1_model__obj_a0da0b1073c297d47b5a239e923e15c74}} 
+\index{model.Model\_obj@{model.Model\_obj}!get\_model\_summary@{get\_model\_summary}}
+\index{get\_model\_summary@{get\_model\_summary}!model.Model\_obj@{model.Model\_obj}}
+\doxysubsubsection{\texorpdfstring{get\_model\_summary()}{get\_model\_summary()}}
+{\footnotesize\ttfamily def model.\+Model\+\_\+obj.\+get\+\_\+model\+\_\+summary (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Getter for model summary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{classmodel_1_1_model__obj}{Model\+\_\+obj}}} & self -\/ The object that the method using. ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmodel_1_1_model__obj_aa36389dacd7f3545a6be010d91af9f44}\label{classmodel_1_1_model__obj_aa36389dacd7f3545a6be010d91af9f44}} 
+\index{model.Model\_obj@{model.Model\_obj}!make\_model@{make\_model}}
+\index{make\_model@{make\_model}!model.Model\_obj@{model.Model\_obj}}
+\doxysubsubsection{\texorpdfstring{make\_model()}{make\_model()}}
+{\footnotesize\ttfamily def model.\+Model\+\_\+obj.\+make\+\_\+model (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Makes a new model for training. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{classmodel_1_1_model__obj}{Model\+\_\+obj}}} & self -\/ The object that the method using this will set the self.\+model to the model the methond makes \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmodel_1_1_model__obj_ab4bd678b6000cdb303007f9f47da788b}\label{classmodel_1_1_model__obj_ab4bd678b6000cdb303007f9f47da788b}} 
+\index{model.Model\_obj@{model.Model\_obj}!model\_save@{model\_save}}
+\index{model\_save@{model\_save}!model.Model\_obj@{model.Model\_obj}}
+\doxysubsubsection{\texorpdfstring{model\_save()}{model\_save()}}
+{\footnotesize\ttfamily def model.\+Model\+\_\+obj.\+model\+\_\+save (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{file\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+saves the self.\+model as a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{classmodel_1_1_model__obj}{Model\+\_\+obj}}} & self -\/ The object that the method using. ~\newline
+ \\
+\hline
+{\em string} & file\+\_\+name -\/ name of the file to save the model to should be a .keras ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmodel_1_1_model__obj_a78be765c89fbbd4cc3fa3cdb012671a2}\label{classmodel_1_1_model__obj_a78be765c89fbbd4cc3fa3cdb012671a2}} 
+\index{model.Model\_obj@{model.Model\_obj}!train\_model@{train\_model}}
+\index{train\_model@{train\_model}!model.Model\_obj@{model.Model\_obj}}
+\doxysubsubsection{\texorpdfstring{train\_model()}{train\_model()}}
+{\footnotesize\ttfamily def model.\+Model\+\_\+obj.\+train\+\_\+model (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Trains a model. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{classmodel_1_1_model__obj}{Model\+\_\+obj}}} & self -\/ The object that the method using. this will train the self.\+model \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/model.\+py\end{DoxyCompactItemize}
