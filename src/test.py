@@ -17,18 +17,25 @@
 # Date       | Engineer     | Description
 # -----------|--------------|--------------------------------
 # 09-26-2022 | Mann, P.    | Initial Release
+# 10-12-2022 " Mann, P.     | testing model class 
 #
 #============================================================
 
 import sys 
 import numpy as np
-
+from model import Model_obj
 print("python version: ",sys.version)
 print("numpy version: ",np.__version__)
 
 
 def main():
     print("\ntest is running")
+    test = Model_obj()
+    test.make_model()
+    test.get_model_summary()
+    test.train_model()
+    test.model_save("test_model.keras")
+
 
 if __name__ == "__main__":
     sys.exit(main())
