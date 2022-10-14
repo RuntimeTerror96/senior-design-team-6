@@ -9,8 +9,9 @@
 #
 # File: Camera.py
 #
-# Brief: This file contains all of the classes related to the
-#        Image Processing Layer
+# Brief: This file defines a class that allows the code to
+#        connect to and retrieve images from the camera which
+#        runs in a seperate thread.
 #
 # Revision History:
 # Date       | Engineer     | Description
@@ -21,8 +22,6 @@
 
 import cv2
 from threading import Thread
-
-# TODO: update all comments
 
 ## @brief This class contains driver code for interfacing with the camera.
 ## This class contains all needed functions to connect
