@@ -43,10 +43,4 @@ class ImageProcessor(object):
     
         lines = cv.Canny(o_mask, 200, 400)
     
-        # this is not needed, this writes the processed images to a directory and we just need the lines.
-        cv.imwrite("lab_test_hsv.png",into_hsv) 
-        cv.imwrite("lab_test_mask.png",o_mask)
-        cv.imwrite("lab_test_orange_detection.png",orange) 
-        cv.imwrite("lab_test_line_detected.png",lines) 
-    
         return lines 

@@ -25,6 +25,7 @@ import sys
 import numpy as np
 import cv2 as cv
 from Camera import *
+from ImageProcessor import *
 
 print("python version: ",sys.version)
 print("numpy version: ",np.__version__)
@@ -34,6 +35,7 @@ def getCamera(src = 0):
 
         # start the camera
         videoCapture = Camera(src).startCamera()
+        processed = ImageProcessor()
 
         while True:
             # Stop if the user presses "q" TODO: we need some other way to stop this.
@@ -43,7 +45,12 @@ def getCamera(src = 0):
 
             frame = videoCapture.frame
 
+            # process the frame
+            detectedLines = processed.extractLines(frame)
+
+            # display both frames
             cv.imshow("Video", frame)
+            cv.imshow("Processed", detectedLines)
 
 def main():
     print("\nmain is running")
