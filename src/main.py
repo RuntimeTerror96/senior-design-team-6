@@ -18,6 +18,8 @@
 # -----------|--------------|--------------------------------
 # 09-26-2022 | Mann, P.     | Initial Release
 # 10-10-2022 | Bryce, D.    | Added camera driver code
+# 10-14-2022 | Bryce, D.    | Refactored main code into a new
+#                           | class (AVI)
 #
 #============================================================
 
@@ -26,37 +28,64 @@ import numpy as np
 import cv2 as cv
 from Camera import *
 from ImageProcessor import *
+import picar
 
 print("python version: ",sys.version)
 print("numpy version: ",np.__version__)
 
-# Camera driver code. Will need to be reworked for our final implementation
-def getCamera(src = 0):
+class AVI:
+    def __init__(self):
 
+        # setup the camera
+        print("DEBUG: setting up camera on source " + self.camSrc)
+        self.camSrc = 0
+        self.cam = Camera(self.camSrc)
+
+        # TODO setup the camera servo(s)
+
+        # TODO setup the back wheels
+
+        # TODO setup the front wheels
+
+        # setup the image processor
+        self.imgProcessor = ImageProcessor()
+
+    # TODO i think we can just call this method to kick the whole thing off.
+    def Drive(self):
+        
         # start the camera
-        videoCapture = Camera(src).startCamera()
-        processed = ImageProcessor()
+        self.cam.startCamera()
 
         while True:
             # Stop if the user presses "q" TODO: we need some other way to stop this.
-            if (cv.waitKey(1) == ord("q")) or videoCapture.stopped:
-                videoCapture.stopCamera()
+            # Some thoughts: we could make a bool called "stop" or something. initialize it to false,
+            # and then every function that we call can return a bool. i.e.
+            #       stop = self.imgProcessor.extractLines(frame)
+            # and then we know that if that function returns true (or whatever), that something went wrong and we
+            # can break out of the infinite loop.
+            if (cv.waitKey(1) == ord("q")) or self.cam.stopped:
+                self.cam.stopCamera()
                 break
-
-            frame = videoCapture.frame
+            # get the frame
+            frame = self.cam.frame
 
             # process the frame
-            detectedLines = processed.extractLines(frame)
+            detectedLines = self.imgProcessor.extractLines(frame)
 
-            # display both frames
+            # TODO: here we'll probably want to send the processed image to the model, predict steering angle,
+            # and then send motor commands. 
+
+            # TESTING display both frames
             cv.imshow("Video", frame)
             cv.imshow("Processed", detectedLines)
 
+########## Main ##########
 def main():
     print("\nmain is running")
 
-    # comment this out if you want to test other stuff.
-    getCamera(0)
+    vehicle = AVI()
+    
+    vehicle.Drive()
 
 if __name__ == "__main__":
     main()
