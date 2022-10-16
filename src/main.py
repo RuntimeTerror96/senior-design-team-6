@@ -35,10 +35,10 @@ print("numpy version: ",np.__version__)
 
 class AVI:
     def __init__(self):
-
+        
         # setup the camera
-        print("DEBUG: setting up camera on source " + self.camSrc)
         self.camSrc = 0
+        print("DEBUG: setting up camera on source " + str(self.camSrc))
         self.cam = Camera(self.camSrc)
 
         # TODO setup the camera servo(s)
