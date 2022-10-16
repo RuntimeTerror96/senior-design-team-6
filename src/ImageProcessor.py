@@ -43,4 +43,6 @@ class ImageProcessor(object):
     
         lines = cv.Canny(o_mask, 200, 400)
     
-        return lines 
+        return lines
+
+    # TODO: write function to crop off top half of image (see region_of_interest() in hand_coded_lane_follower.py)
