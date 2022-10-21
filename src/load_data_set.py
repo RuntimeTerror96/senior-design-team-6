@@ -15,14 +15,14 @@ import numpy as np
 #
 # File: doxygen-example.py
 #
-# Brief: This file is our model to run to test code it will run any test we need
-#        Anythong can go in here when you make a branch and we wont worry about merge conflicts
-#
+# Brief: This file that has util functions needed for the model class
+#        #
 #
 # Revision History:
 # Date       | Engineer     | Description
 # -----------|--------------|--------------------------------
 # 10-12-2022 | Mann, P.    | Initial Release
+# 10-13-2022 | Mann, P.     | minor changes 
 #
 #============================================================
 
@@ -52,7 +52,34 @@ def get_data():
                 turn = 2
             targets.append(turn)
             #IMG__122_-1_1.png
-
+    data_dir = '/home/senior-design/Documents/data/9-21 Dylan-1'
+    file_list = os.listdir(data_dir)
+    for filename in file_list:
+        if fnmatch.fnmatch(filename, pattern):
+            image_paths.append(os.path.join(data_dir,filename))
+            turn_S = filename[-6:-4]
+            if turn_S == '_1':
+                turn = 1
+            if turn_S == '_0':
+                turn = 0
+            if turn_S == '-1':
+                turn = 2
+            targets.append(turn)
+    data_dir = '/home/senior-design/Documents/data/9-21 Dylan-2'
+    file_list = os.listdir(data_dir)
+    for filename in file_list:
+        if fnmatch.fnmatch(filename, pattern):
+            image_paths.append(os.path.join(data_dir,filename))
+            turn_S = filename[-6:-4]
+            if turn_S == '_1':
+                turn = 1
+            if turn_S == '_0':
+                turn = 0
+            if turn_S == '-1':
+                turn = 2
+            targets.append(turn)
+    data_dir = '/home/senior-design/Documents/data/9-21 Dylan-3'
+    file_list = os.listdir(data_dir)
     return image_paths,targets
 def image_data_generator(image_paths, targets, batch_size, is_training):
     while True:

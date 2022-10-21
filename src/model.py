@@ -24,6 +24,14 @@ from tensorflow.keras import layers
 from load_data_set import get_data
 from load_data_set import image_data_generator
 
+
+def countX(lst, x):
+    count = 0
+    for ele in lst:
+        if (ele == x):
+            count = count + 1
+    return count
+
 ## @brief This class makes a model object that can be trained. It can also load a trained model and use it for predictions
 class Model_obj:
     def __init__(self):
@@ -63,11 +71,19 @@ class Model_obj:
     
     def train_model(self):
         image_paths , targets = get_data()
+        
+        print("amount of -1s: ",countX(targets,2))
+        print("amount of 0s: ",countX(targets,0))
+        print("amount of 1s: ",countX(targets,1))
+
+        size_of_data = len(image_paths)-1
+        print("size of Traing data ",len(image_paths))
+
         X_train, X_valid, y_train, y_valid = train_test_split( image_paths, targets, test_size=0.2)
         X_train_batch, y_train_batch = next(image_data_generator(X_train, y_train, 2, True))
 
         self.model.fit(image_data_generator( X_train, y_train, batch_size=1, is_training=True),
-                             steps_per_epoch=300,
+                             steps_per_epoch=size_of_data,
                               epochs=10
                               )
     ## @brief Getter for model summary.
