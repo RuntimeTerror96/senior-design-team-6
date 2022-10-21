@@ -33,7 +33,7 @@ class ImageProcessor(object):
     ## @param image frame: an image to be processed
     ## @return image lines: a grayscale, edge-detected image
     def extractLines(self, frame): 
-        into_hsv = cv.cvtColor(frame,cv.COLOR_BGR2HSV)
+        into_hsv = cv.cvtColor(frame, cv.COLOR_BGR2HSV)
     
         L_limit = np.array([0,50,50],np.uint8) # setting the orange lower limit
         U_limit = np.array([30,255,255],np.uint8) # setting the orange upper limit
@@ -46,3 +46,15 @@ class ImageProcessor(object):
         return lines
 
     # TODO: write function to crop off top half of image (see region_of_interest() in hand_coded_lane_follower.py)
+
+####### Test functions #######
+if __name__ == '__main__':
+    frame = cv.imread("../test/Image_Proc_Demo/5.jpg")
+
+    ip = ImageProcessor()
+
+    cv.imwrite("unprocessed.png", frame)
+
+    lines = ip.extractLines(frame)
+
+    cv.imwrite("Processed.png", lines)
