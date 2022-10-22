@@ -80,7 +80,7 @@ class ImageProcessor(object):
         angle = np.pi / 180
         minThreshold = 10
 
-        segments = cv.HoughLinesP(edges, rho, angle, minThreshold, np.array([]), minLineLength=10, maxLineGap=6)
+        segments = cv.HoughLinesP(edges, rho, angle, minThreshold, np.array([]), minLineLength=10, maxLineGap=4)
 
         if self.debug == True and segments is not None:
             for segment in segments:
@@ -92,7 +92,7 @@ class ImageProcessor(object):
 ####### Test functions #######
 def lengthOfSegments(line):
     x1, y1, x2, y2 = line
-    return np.sqrt((x2-x2) ** 2 + (y2 - y1) ** 2)
+    return np.sqrt((x2-x1) ** 2 + (y2 - y1) ** 2)
 
 def displayLaneLines(frame, lines, lineColor=(0, 255, 0), lineWidth=10):
     lineImage = np.zeros_like(frame)
