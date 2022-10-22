@@ -24,6 +24,7 @@ import time
 from turtle import heading
 import cv2 as cv
 import numpy as np
+import math
 
 ## @brief This class does the image processing.
 class ImageProcessor(object):
@@ -92,7 +93,7 @@ class ImageProcessor(object):
 ####### Test functions #######
 def lengthOfSegments(line):
     x1, y1, x2, y2 = line
-    return np.sqrt((x2-x1) ** 2 + (y2 - y1) ** 2)
+    return math.sqrt((x2-x1) ** 2 + (y2 - y1) ** 2)
 
 def displayLaneLines(frame, lines, lineColor=(0, 255, 0), lineWidth=10):
     lineImage = np.zeros_like(frame)
@@ -185,8 +186,8 @@ def calcSteeringAng(frame, lanes):
     # steering angle is the angle between navigation direction to end of center line
     yOffset = int(height / 2)
 
-    angToMidRadian = np.arctan(xOffset / yOffset)       # angle to center vertical line in radians
-    angToMidDeg = int(angToMidRadian * 180.0 / np.pi)   # angle to center vertical line in degrees
+    angToMidRadian = math.atan(xOffset / yOffset)       # angle to center vertical line in radians
+    angToMidDeg = int(angToMidRadian * 180.0 / math.pi)   # angle to center vertical line in degrees
     steeringAngle = angToMidDeg + 90
 
     return steeringAngle
@@ -218,10 +219,10 @@ def displayHeading(frame, angle, lineColor=(0, 0, 255), lineWidth=5):
     # 0-89 degree: turn left
     # 90 degree: going straight
     # 91-180 degree: turn right
-    steeringAngleRadian = angle / 180.0 * np.pi
+    steeringAngleRadian = angle / 180.0 * math.pi
     x1 = int(width / 2)
     y1 = height
-    x2 = int(x1 - height / 2 / np.tan(steeringAngleRadian))
+    x2 = int(x1 - height / 2 / math.tan(steeringAngleRadian))
     y2 = int(height / 2)
 
     cv.line(headingImg, (x1, y1), (x2, y2), lineColor, lineWidth)
