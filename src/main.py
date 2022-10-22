@@ -26,8 +26,8 @@
 import sys 
 import numpy as np
 import cv2 as cv
-from Camera import *
-from ImageProcessor import *
+import Camera
+import ImageProcessor
 import picar
 
 print("python version: ",sys.version)
