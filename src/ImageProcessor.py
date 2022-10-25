@@ -21,7 +21,6 @@
 
 import os
 import time
-from turtle import heading
 import cv2 as cv
 import numpy as np
 import math
@@ -142,11 +141,11 @@ def avgSlopeIntercept(frame, lineSegs):
                     rightFit.append((slope, intercept))
 
     leftFitAvg = np.average(leftFit, axis=0)
-    if len(leftFit) > 0:
+    if len(leftFit) > 5:
         lanes.append(makePoints(frame, leftFitAvg))
 
     rightFitAvg = np.average(rightFit, axis=0)
-    if len(rightFit) > 0:
+    if len(rightFit) > 5:
         lanes.append(makePoints(frame, rightFitAvg))
 
     return lanes
@@ -192,7 +191,7 @@ def calcSteeringAng(frame, lanes):
 
     return steeringAngle
 
-def stabilizeSteeringAng(currentAngle, newAngle, numLanes, maxAngDevTwoLines=5, maxAngDevOneLine=1):
+def stabilizeSteeringAng(currentAngle, newAngle, numLanes, maxAngDevTwoLines=10, maxAngDevOneLine=5):
 
     if numLanes == 2:
         maxAngleDeviation = maxAngDevTwoLines
@@ -271,4 +270,4 @@ if __name__ == '__main__':
         headingImg = displayHeading(frame, currentSteeringAngle)
         cv.imshow("Heading", headingImg)
 
-        time.sleep(0.5)
+        time.sleep(0.25)
