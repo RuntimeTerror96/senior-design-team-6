@@ -9,12 +9,16 @@
 #
 # File: Reconcilliator.py
 #
-# Brief: <description>
+# Brief: This class loads in Path Finding Neural Network models and computes the 
+#       output for a current frame using the generateOutput function.
+#       #Todo: After implementing the Obj Detection Model, this class
+#       must upload both models and compute correct data taking outcome
+#       of both models.
 #
 # Revision History:
 # Date       | Engineer     | Description
 # -----------|--------------|--------------------------------
-# 10-16-2022 | GC, B.       | <description>
+# 10-16-2022 | GC, B.       | Created base template for the class
 #
 #============================================================
 
@@ -35,7 +39,6 @@ class Reconcilliator:
 
     ## @brief Uses the Neural Network to compute the data for a given frame.
     ## @param type nnInputData - A preprocessed frame that is used to compute steering angle by NN pathFinding model.
-
     def inputManager(self, nnInputData):
         steeringAngle = self.pathFindingModel.predict(nnInputData)[0]
         #TODO
@@ -53,10 +56,12 @@ class Reconcilliator:
     
     ## @brief Calls input manager, decision module function and retunrs output ready to be fed to the car
     ## @param type nnInputData - A preprocessed frame that is used to compute steering angle by NN pathFinding model.
-    def outputGenerator(self, nnInputData):
+    def generateOutput(self, nnInputData):
         #Todo: IMPLEMENT Output manager Module AFTER COMPLETION OF OBJECT RECOGNIION
         #This module should take in the output from decision module and lay the outputs in form of array to be pushed 
-        self.inputManager(nnInputData)
+        steeringAngle = self.inputManager(nnInputData)
+        #contruct a array in following format [Move/Halt(1/0), speed(1,2,3,4,5), steeringAngle]
+        return np.array([1,2,steeringAngle]) #default [move, speed=2, steeringAngle]
     
     
 
