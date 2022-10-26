@@ -191,7 +191,7 @@ def calcSteeringAng(frame, lanes):
 
     return steeringAngle
 
-def stabilizeSteeringAng(currentAngle, newAngle, numLanes, maxAngDevTwoLines=10, maxAngDevOneLine=5):
+def stabilizeSteeringAng(currentAngle, newAngle, numLanes, maxAngDevTwoLines=10, maxAngDevOneLine=7):
 
     if numLanes == 2:
         maxAngleDeviation = maxAngDevTwoLines
