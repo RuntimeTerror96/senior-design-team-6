@@ -53,8 +53,13 @@ class AVI:
         self.tiltServo.write(90)
 
         # Setup the back wheels
+        self.backWheels = picar.back_wheels.Back_Wheels()
+        self.backWheels.speed = 0
 
         # Setup the front wheels
+        self.frontWheels = picar.front_wheels.Front_Wheels()
+        self.frontWheels.turning_offset = -25 # calibrate servo to center TODO may need tuning
+        self.frontWheels.turn(90)
 
         # setup the image processor
         self.imgProcessor = ImageProcessor()
@@ -68,10 +73,18 @@ class AVI:
         self.modelRec = ModelReconciliator()
 
     # TODO i think we can just call this method to kick the whole thing off.
-    def Drive(self):
+    def Drive(self, initialSpeed=0):
         
         # start the camera
         self.cam.startCamera()
+
+        # NOTE: command structure (list)
+        #       command[0] - steering angle (float)
+        #       command[1] - motor command (1 = go, 0 = stop)
+        #       command[2] - speed (float) <- TODO: implemented once if we get to object recognition
+        commands = list()
+        commands[2] = initialSpeed
+
 
         while True:
             # Stop if the user presses "q" TODO: we need some other way to stop this.
@@ -83,6 +96,7 @@ class AVI:
             if (cv.waitKey(1) == ord("q")) or self.cam.stopped:
                 self.cam.stopCamera()
                 break
+
             # get the frame
             frame = self.cam.frame
 
@@ -92,7 +106,7 @@ class AVI:
 
             # Use the path finding model to get the steering angle from the lange lines
             # FIXME: replace with real model
-            steeringAngle = self.fNN.predict(laneLines)
+            steeringAngle = self.fNN.GetAngle(laneLines)
 
             # TODO: use the object detection model to get ????
             #       model will probably give go/stop decision, speed decision, and maybe a different steering angle to avoid an object? idk
@@ -100,10 +114,17 @@ class AVI:
             # Use the ModelReconciliator to make a final decision based on output from both models
             # FIXME: right now i'm skipping this step for testing since modelRec may need rework
             # pseudo code:
-            #   commands = self.modelRec.makeDecision(steeringAngle)
-            commands = steeringAngle    # this is for testing. the fake NN is actually returning commands for now, for testing
+            #   commands = self.modelRec.makeDecision(steeringAngle, objdetectoutput)
+
+
+            commands[0] = steeringAngle
+            commands[1] = None
+            commands[2] = 40
 
             # Send motor and servo commands with the output from ModelReconciliator
+            self.frontWheels.turn(commands[0])
+            self.backWheels.speed = commands[2]
+
 
 
             if self.DEBUG == True:
@@ -128,6 +149,8 @@ def main():
     
     if DEBUG:
         print("main is running")
+        print("python version: ",sys.version)
+        print("numpy version: ",np.__version__)
 
     vehicle = AVI(DEBUG)
     

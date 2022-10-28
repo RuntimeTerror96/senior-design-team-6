@@ -16,7 +16,7 @@
 # Revision History:
 # Date       | Engineer     | Description
 # -----------|--------------|--------------------------------
-# 09-26-2022 | Mann, P.    | Initial Release
+# 09-26-2022 | Mann, P.     | Initial Release
 #
 #============================================================
 

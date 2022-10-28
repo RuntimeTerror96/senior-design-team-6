@@ -4,4 +4,4 @@ class FakeNeuralNetwork:
         pass
 
     def GetAngle(self):
-        return list(90)
+        return 90
