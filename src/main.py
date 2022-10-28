@@ -26,12 +26,11 @@
 import sys 
 import numpy as np
 import cv2 as cv
-import Camera
-import ImageProcessor
-import picar
-
-print("python version: ",sys.version)
-print("numpy version: ",np.__version__)
+from Camera import Camera
+from ImageProcessor import ImageProcessor
+from FakeNeuralNetwork import FakeNeuralNetwork # FIXME: testing only, replace with real model
+import ModelReconciliator
+from SunFounder_PiCar import picar
 
 class AVI:
     def __init__(self, DEBUG=False):
@@ -42,14 +41,31 @@ class AVI:
         print("DEBUG: setting up camera on source " + str(self.camSrc))
         self.cam = Camera(self.camSrc)
 
-        # TODO setup the camera servo(s)
+        picar.setup()
 
-        # TODO setup the back wheels
+        # Setup the camera servos
+        self.panServo = picar.Servo.Servo(1)
+        self.panServo.offset = -30  # calibrate servo to center TODO might need tuning
+        self.panServo.write(90)
 
-        # TODO setup the front wheels
+        self.tiltServo = picar.Servo.Servo(2)
+        self.tiltServo.offset = 20  # calibrate servo to center TODO might need tuning
+        self.tiltServo.write(90)
+
+        # Setup the back wheels
+
+        # Setup the front wheels
 
         # setup the image processor
         self.imgProcessor = ImageProcessor()
+
+        # setup the neural network
+        # FIXME: replace with real model
+        self.fNN = FakeNeuralNetwork()
+
+        # setup the model reconciliator
+        # FIXME: model reconciliator may need rework
+        self.modelRec = ModelReconciliator()
 
     # TODO i think we can just call this method to kick the whole thing off.
     def Drive(self):
@@ -71,17 +87,34 @@ class AVI:
             frame = self.cam.frame
 
             # process the frame
-            detectedLines = self.imgProcessor.extractLines(frame)
+            # FIXME: eventually this will return lane lines. Updates need to be made to ImageProcessor.py
+            laneLines = self.imgProcessor.extractLines(frame)
 
-            # TODO: here we'll probably want to send the processed image to the model, predict steering angle,
-            # and then send motor commands. 
+            # Use the path finding model to get the steering angle from the lange lines
+            # FIXME: replace with real model
+            steeringAngle = self.fNN.predict(laneLines)
 
-            # TESTING display both frames
-            cv.imshow("Video", frame)
-            cv.imshow("Processed", detectedLines)
+            # TODO: use the object detection model to get ????
+            #       model will probably give go/stop decision, speed decision, and maybe a different steering angle to avoid an object? idk
+
+            # Use the ModelReconciliator to make a final decision based on output from both models
+            # FIXME: right now i'm skipping this step for testing since modelRec may need rework
+            # pseudo code:
+            #   commands = self.modelRec.makeDecision(steeringAngle)
+            commands = steeringAngle    # this is for testing. the fake NN is actually returning commands for now, for testing
+
+            # Send motor and servo commands with the output from ModelReconciliator
+
+
+            if self.DEBUG == True:
+                cv.imshow("Video", frame)
+                cv.imshow("Processed", laneLines)
 
 ########## Main ##########
 def main():
+
+    print("python version: ",sys.version)
+    print("numpy version: ",np.__version__)
 
     # Get command line arguments
     nArgc = len(sys.argv)
