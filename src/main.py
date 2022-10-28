@@ -34,8 +34,9 @@ print("python version: ",sys.version)
 print("numpy version: ",np.__version__)
 
 class AVI:
-    def __init__(self):
-        
+    def __init__(self, DEBUG=False):
+        self.DEBUG = DEBUG
+
         # setup the camera
         self.camSrc = 0
         print("DEBUG: setting up camera on source " + str(self.camSrc))
@@ -81,9 +82,21 @@ class AVI:
 
 ########## Main ##########
 def main():
-    print("\nmain is running")
 
-    vehicle = AVI()
+    # Get command line arguments
+    nArgc = len(sys.argv)
+    nArgv = sys.argv
+
+    # check for debug flag
+    if nArgc > 1 and nArgv[1] == "-d":
+        DEBUG = True
+    else:
+        DEBUG = False
+    
+    if DEBUG:
+        print("main is running")
+
+    vehicle = AVI(DEBUG)
     
     vehicle.Drive()
 
