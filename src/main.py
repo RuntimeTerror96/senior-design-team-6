@@ -29,7 +29,7 @@ import cv2 as cv
 from Camera import Camera
 from ImageProcessor import ImageProcessor
 from FakeNeuralNetwork import FakeNeuralNetwork # FIXME: testing only, replace with real model
-import ModelReconciliator
+#import ModelReconciliator
 from SunFounder_PiCar import picar
 
 class AVI:
@@ -70,7 +70,7 @@ class AVI:
 
         # setup the model reconciliator
         # FIXME: model reconciliator may need rework
-        self.modelRec = ModelReconciliator()
+        #self.modelRec = ModelReconciliator()
 
     # TODO i think we can just call this method to kick the whole thing off.
     def Drive(self, initialSpeed=0):
@@ -82,7 +82,7 @@ class AVI:
         #       command[0] - steering angle (float)
         #       command[1] - motor command (1 = go, 0 = stop)
         #       command[2] - speed (float) <- TODO: implemented once if we get to object recognition
-        commands = list()
+        commands = [None] * 3
         commands[2] = initialSpeed
 
 
@@ -119,7 +119,7 @@ class AVI:
 
             commands[0] = steeringAngle
             commands[1] = None
-            commands[2] = 40
+            commands[2] = 0
 
             # Send motor and servo commands with the output from ModelReconciliator
             self.frontWheels.turn(commands[0])
