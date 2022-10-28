@@ -16,6 +16,7 @@
 # Date       | Engineer     | Description
 # -----------|--------------|--------------------------------
 # 10-10-2022 | Bryce, D     | Initial Release
+# 10-26-2022 | GC, B        | Changes to Thresholds, Comments 
 #
 #============================================================
 
@@ -141,11 +142,11 @@ def avgSlopeIntercept(frame, lineSegs):
                     rightFit.append((slope, intercept))
 
     leftFitAvg = np.average(leftFit, axis=0)
-    if len(leftFit) > 5:
+    if len(leftFit) > 3:
         lanes.append(makePoints(frame, leftFitAvg))
 
     rightFitAvg = np.average(rightFit, axis=0)
-    if len(rightFit) > 5:
+    if len(rightFit) > 3:
         lanes.append(makePoints(frame, rightFitAvg))
 
     return lanes
@@ -191,7 +192,7 @@ def calcSteeringAng(frame, lanes):
 
     return steeringAngle
 
-def stabilizeSteeringAng(currentAngle, newAngle, numLanes, maxAngDevTwoLines=10, maxAngDevOneLine=5):
+def stabilizeSteeringAng(currentAngle, newAngle, numLanes, maxAngDevTwoLines=12, maxAngDevOneLine=12):
 
     if numLanes == 2:
         maxAngleDeviation = maxAngDevTwoLines
