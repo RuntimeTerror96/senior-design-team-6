@@ -36,8 +36,8 @@ class ImageProcessor(object):
         self.showImages = showImages
         self.debug = debug
 
-    ## @brief Processes an image to detect the lines of tape.
-    ## @param image frame: an image to be processed
+    ## @brief It takes a frame from the camera, converts it to HSV, masks the orange, finds the edges, and masks the edges
+    ## @param frame: The image to be processed
     ## @return image lines: a grayscale, edge-detected image
     def extractLines(self, frame):
         if self.showImages == True:
@@ -57,10 +57,15 @@ class ImageProcessor(object):
 
         if self.showImages == True:
             cv.imshow("Lines", masked)
+            
+        lineSegs = self.getLineSegments(masked)
+        lanes = self.avgSlopeIntercept(frame, lineSegs)
 
-        return masked
+        return lanes
 
-    # TODO: documentation
+    ## @brief It takes an image and returns a masked image    
+    ## @param frame: the image to be masked
+    ## @return: The masked image
     def maskImage(self, frame):
         height, width = frame.shape
         mask = np.zeros_like(frame)
@@ -86,70 +91,71 @@ class ImageProcessor(object):
         if self.debug == True and segments is not None:
             for segment in segments:
                 print('detected line segment:')
-                print("%s of length %s" % (segment, lengthOfSegments(segment[0])))
+                print("%s of length %s" % (segment, self.lengthOfSegments(segment[0])))
 
         return segments
 
+    def lengthOfSegments(self, line):
+        x1, y1, x2, y2 = line
+        return math.sqrt((x2-x1) ** 2 + (y2 - y1) ** 2)
+
 ####### Test functions #######
-def lengthOfSegments(line):
-    x1, y1, x2, y2 = line
-    return math.sqrt((x2-x1) ** 2 + (y2 - y1) ** 2)
 
-def displayLaneLines(frame, lines, lineColor=(0, 255, 0), lineWidth=10):
-    lineImage = np.zeros_like(frame)
-    if lines is not None:
-        for line in lines:
-            for x1, y1, x2, y2 in line:
-                cv.line(lineImage, (x1, y1), (x2, y2), lineColor, lineWidth)
+    def displayLaneLines(self, frame, lines, lineColor=(0, 255, 0), lineWidth=10):
+        lineImage = np.zeros_like(frame)
+        if lines is not None:
+            for line in lines:
+                for x1, y1, x2, y2 in line:
+                    cv.line(lineImage, (x1, y1), (x2, y2), lineColor, lineWidth)
 
-    lineImage = cv.addWeighted(frame, 0.8, lineImage, 1, 1)
-    return lineImage
+        lineImage = cv.addWeighted(frame, 0.8, lineImage, 1, 1)
+        return lineImage
 
-# Combines all line segments into one or two lines
-# if all slopes are < 0: only left lane detected
-# if all slopes are > 0: only right lane detected
-def avgSlopeIntercept(frame, lineSegs):
-    lanes = []
+    # Combines all line segments into one or two lines
+    # if all slopes are < 0: only left lane detected
+    # if all slopes are > 0: only right lane detected
+    def avgSlopeIntercept(self, frame, lineSegs):
+        lanes = []
 
-    if lineSegs is None:
+        if lineSegs is None:
+            return lanes
+
+        height, width, _ = frame.shape
+        leftFit = []
+        rightFit = []
+
+        boundary = 1/3
+        leftBoundary = width * (1 - boundary)   # left lane should be on left 2/3 of the screen
+        rightBoundary = width * boundary        # right lane should be on right 2/3 of the screen
+
+        for segment in lineSegs:
+
+            for x1, y1, x2, y2 in segment:
+
+                # skip vertical line segment
+                if x1 == x2:
+                    continue
+
+                fit = np.polyfit((x1, x2), (y1, y2), 1)
+                slope = fit[0]
+                intercept = fit[1]
+
+                if slope < 0:
+                    if x1 < leftBoundary and x2 < leftBoundary:
+                        leftFit.append((slope, intercept))
+                else:
+                    if x2 > rightBoundary and x2 > rightBoundary:
+                        rightFit.append((slope, intercept))
+
+        leftFitAvg = np.average(leftFit, axis=0)
+        if len(leftFit) > 5:
+            lanes.append(makePoints(frame, leftFitAvg))
+
+        rightFitAvg = np.average(rightFit, axis=0)
+        if len(rightFit) > 5:
+            lanes.append(makePoints(frame, rightFitAvg))
+
         return lanes
-
-    height, width, _ = frame.shape
-    leftFit = []
-    rightFit = []
-
-    boundary = 1/3
-    leftBoundary = width * (1 - boundary)   # left lane should be on left 2/3 of the screen
-    rightBoundary = width * boundary        # right lane should be on right 2/3 of the screen
-
-    for segment in lineSegs:
-
-        for x1, y1, x2, y2 in segment:
-
-            # skip vertical line segment
-            if x1 == x2:
-                continue
-
-            fit = np.polyfit((x1, x2), (y1, y2), 1)
-            slope = fit[0]
-            intercept = fit[1]
-
-            if slope < 0:
-                if x1 < leftBoundary and x2 < leftBoundary:
-                    leftFit.append((slope, intercept))
-            else:
-                if x2 > rightBoundary and x2 > rightBoundary:
-                    rightFit.append((slope, intercept))
-
-    leftFitAvg = np.average(leftFit, axis=0)
-    if len(leftFit) > 3:
-        lanes.append(makePoints(frame, leftFitAvg))
-
-    rightFitAvg = np.average(rightFit, axis=0)
-    if len(rightFit) > 3:
-        lanes.append(makePoints(frame, rightFitAvg))
-
-    return lanes
 
 
 def makePoints(frame, line):
@@ -237,7 +243,7 @@ if __name__ == '__main__':
 
     ip = ImageProcessor(True, True)
 
-    path = "C:/usr/training/"
+    path = "C:/Users/biraj/Desktop/Training Data/training/training/"
 
     currentSteeringAngle = 90
 
@@ -252,23 +258,23 @@ if __name__ == '__main__':
         lines = ip.extractLines(frame)
 
         # get line segments
-        lineSegs = ip.getLineSegments(lines)
-        if lineSegs is not None:
-            lineImage = displayLaneLines(frame, lineSegs)
-            cv.imshow("Line Segments", lineImage)
+        # lineSegs = ip.getLineSegments(lines)
+        # if lineSegs is not None:
+        #     lineImage = ip.displayLaneLines(frame, lineSegs)
+        #     cv.imshow("Line Segments", lineImage)
 
-        # combine line segments into one or two lane lines
-        lanes = avgSlopeIntercept(frame, lineSegs)
-        # no lanes detected
-        if len(lanes) == 0:
-            continue
-        laneImage = displayLaneLines(frame, lanes)
-        cv.imshow("Lane Lines", laneImage)
+        # # combine line segments into one or two lane lines
+        # lanes = ip.avgSlopeIntercept(frame, lineSegs)
+        # # no lanes detected
+        # if len(lanes) == 0:
+        #     continue
+        # laneImage = ip.displayLaneLines(frame, lanes)
+        # cv.imshow("Lane Lines", laneImage)
 
-        # calculate and display steering angle
-        newSteeringAngle = calcSteeringAng(frame, lanes)
-        currentSteeringAngle = stabilizeSteeringAng(currentSteeringAngle, newSteeringAngle, len(lanes))
-        headingImg = displayHeading(frame, currentSteeringAngle)
-        cv.imshow("Heading", headingImg)
+        # # calculate and display steering angle
+        # newSteeringAngle = calcSteeringAng(frame, lanes)
+        # currentSteeringAngle = stabilizeSteeringAng(currentSteeringAngle, newSteeringAngle, len(lanes))
+        # headingImg = displayHeading(frame, currentSteeringAngle)
+        # cv.imshow("Heading", headingImg)
 
         time.sleep(0.25)
