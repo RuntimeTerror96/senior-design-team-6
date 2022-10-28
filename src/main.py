@@ -20,6 +20,7 @@
 # 10-10-2022 | Bryce, D.    | Added camera driver code
 # 10-14-2022 | Bryce, D.    | Refactored main code into a new
 #                           | class (AVI)
+# 10-28-2022 | Bryce, D.    | Added vehicle control
 #
 #============================================================
 
@@ -86,56 +87,61 @@ class AVI:
         commands[2] = initialSpeed
 
 
-        while True:
-            # Stop if the user presses "q" TODO: we need some other way to stop this.
-            # Some thoughts: we could make a bool called "stop" or something. initialize it to false,
-            # and then every function that we call can return a bool. i.e.
-            #       stop = self.imgProcessor.extractLines(frame)
-            # and then we know that if that function returns true (or whatever), that something went wrong and we
-            # can break out of the infinite loop.
-            if (cv.waitKey(1) == ord("q")) or self.cam.stopped:
-                self.cam.stopCamera()
-                break
+        try:
+            while True:
+                # Stop if the user presses "q" TODO: we need some other way to stop this.
+                # Some thoughts: we could make a bool called "stop" or something. initialize it to false,
+                # and then every function that we call can return a bool. i.e.
+                #       stop = self.imgProcessor.extractLines(frame)
+                # and then we know that if that function returns true (or whatever), that something went wrong and we
+                # can break out of the infinite loop.
+                if (cv.waitKey(1) == ord("q")) or self.cam.stopped:
+                    self.cam.stopCamera()
+                    break
 
-            # get the frame
-            frame = self.cam.frame
+                # get the frame
+                frame = self.cam.frame
 
-            # process the frame
-            # FIXME: eventually this will return lane lines. Updates need to be made to ImageProcessor.py
-            laneLines = self.imgProcessor.extractLines(frame)
+                # process the frame
+                # FIXME: eventually this will return lane lines. Updates need to be made to ImageProcessor.py
+                laneLines = self.imgProcessor.extractLines(frame)
 
-            # Use the path finding model to get the steering angle from the lange lines
-            # FIXME: replace with real model
-            steeringAngle = self.fNN.GetAngle(laneLines)
+                # Use the path finding model to get the steering angle from the lange lines
+                # FIXME: replace with real model
+                steeringAngle = self.fNN.GetAngle(laneLines)
 
-            # TODO: use the object detection model to get ????
-            #       model will probably give go/stop decision, speed decision, and maybe a different steering angle to avoid an object? idk
+                # TODO: use the object detection model to get ????
+                #       model will probably give go/stop decision, speed decision, and maybe a different steering angle to avoid an object? idk
 
-            # Use the ModelReconciliator to make a final decision based on output from both models
-            # FIXME: right now i'm skipping this step for testing since modelRec may need rework
-            # pseudo code:
-            #   commands = self.modelRec.makeDecision(steeringAngle, objdetectoutput)
-
-
-            commands[0] = steeringAngle
-            commands[1] = None
-            commands[2] = 0
-
-            # Send motor and servo commands with the output from ModelReconciliator
-            self.frontWheels.turn(commands[0])
-            self.backWheels.speed = commands[2]
+                # Use the ModelReconciliator to make a final decision based on output from both models
+                # FIXME: right now i'm skipping this step for testing since modelRec may need rework
+                # pseudo code:
+                #   commands = self.modelRec.makeDecision(steeringAngle, objdetectoutput)
 
 
+                commands[0] = steeringAngle
+                commands[1] = None
+                commands[2] = 0
 
-            if self.DEBUG == True:
-                cv.imshow("Video", frame)
-                cv.imshow("Processed", laneLines)
+                # Send motor and servo commands with the output from ModelReconciliator
+                self.frontWheels.turn(commands[0])
+                self.backWheels.speed = commands[2]
+
+
+
+                if self.DEBUG == True:
+                    cv.imshow("Video", frame)
+                    cv.imshow("Processed", laneLines)
+
+        # catch ctrl+c from terminal, shutdown gracefully
+        except KeyboardInterrupt:
+            self.cam.stopCamera()
+            self.frontWheels.turn(90)
+            self.backWheels.speed = 0
+
 
 ########## Main ##########
 def main():
-
-    print("python version: ",sys.version)
-    print("numpy version: ",np.__version__)
 
     # Get command line arguments
     nArgc = len(sys.argv)
