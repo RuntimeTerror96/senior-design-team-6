@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['templatesconfig_0',['TemplatesConfig',['../classremote__control_1_1templates_1_1apps_1_1_templates_config.html',1,'remote_control::templates::apps']]]
+  ['servo_115',['Servo',['../class_sun_founder___pi_car_1_1picar_1_1_sun_founder___p_c_a9685_1_1_servo_1_1_servo.html',1,'SunFounder_PiCar::picar::SunFounder_PCA9685::Servo']]],
+  ['settingscreen_116',['SettingScreen',['../classclient_1_1_setting_screen.html',1,'client']]]
 ];

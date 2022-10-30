@@ -1,0 +1,106 @@
+\hypertarget{class_model_reconciliator_1_1_reconcilliator}{}\doxysection{Model\+Reconciliator.\+Reconcilliator Class Reference}
+\label{class_model_reconciliator_1_1_reconcilliator}\index{ModelReconciliator.Reconcilliator@{ModelReconciliator.Reconcilliator}}
+
+
+This class converts the output from two difrrent NN Model and makes decsions.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \mbox{\hyperlink{class_model_reconciliator_1_1_reconcilliator_a3a082182038c59ed7158cfc2650d07b6}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, path\+Finding\+Model, obj\+Detection\+Model=None)
+\begin{DoxyCompactList}\small\item\em Initialize the \mbox{\hyperlink{class_model_reconciliator_1_1_reconcilliator}{Reconcilliator}} object using NN models. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_model_reconciliator_1_1_reconcilliator_ab4bfae02bf938ead57e444e75002fea5}{input\+Manager}} (self, nn\+Input\+Data)
+\begin{DoxyCompactList}\small\item\em Uses the Neural Network to compute the data for a given frame. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_model_reconciliator_1_1_reconcilliator_acd13acae07096607017b9ea8391bd471}{decision\+Module}} (self)
+\begin{DoxyCompactList}\small\item\em Evaluates output from pathfinding model and object recognition model and generates an arra. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_model_reconciliator_1_1_reconcilliator_a65cb2dc1ed6e09c444f2de05a1d6ec8b}{generate\+Output}} (self, nn\+Input\+Data)
+\begin{DoxyCompactList}\small\item\em Calls input manager, decision module function and retunrs output ready to be fed to the car. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_model_reconciliator_1_1_reconcilliator_a99b44ffca754c175c42883ee400b7e87}\label{class_model_reconciliator_1_1_reconcilliator_a99b44ffca754c175c42883ee400b7e87}} 
+{\bfseries path\+Finding\+Model}
+\item 
+\mbox{\Hypertarget{class_model_reconciliator_1_1_reconcilliator_af53c757720d89fcb177a52341c7cb96e}\label{class_model_reconciliator_1_1_reconcilliator_af53c757720d89fcb177a52341c7cb96e}} 
+{\bfseries obj\+Detection\+Model}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class converts the output from two difrrent NN Model and makes decsions. 
+
+This class contains all three sub modules as functions of Model \mbox{\hyperlink{class_model_reconciliator_1_1_reconcilliator}{Reconcilliator}} layer. ~\newline
+ This class shall be used in main function to pass in the models, pass in the inputs, make decisions and pass the outputs. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_model_reconciliator_1_1_reconcilliator_a3a082182038c59ed7158cfc2650d07b6}\label{class_model_reconciliator_1_1_reconcilliator_a3a082182038c59ed7158cfc2650d07b6}} 
+\index{ModelReconciliator.Reconcilliator@{ModelReconciliator.Reconcilliator}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!ModelReconciliator.Reconcilliator@{ModelReconciliator.Reconcilliator}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily  None Model\+Reconciliator.\+Reconcilliator.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{path\+Finding\+Model,  }\item[{}]{obj\+Detection\+Model = {\ttfamily None} }\end{DoxyParamCaption})}
+
+
+
+Initialize the \mbox{\hyperlink{class_model_reconciliator_1_1_reconcilliator}{Reconcilliator}} object using NN models. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Keras.\+Model} & path\+Finding\+Model -\/ the model is used to compute directions to obtain steering angle for the vechicle. \\
+\hline
+{\em Keras.\+Model} & obj\+Detection\+Model -\/ the model is used to detect objects and signs. \#\+TODO\+: after completing Obj detection Layer \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_model_reconciliator_1_1_reconcilliator_acd13acae07096607017b9ea8391bd471}\label{class_model_reconciliator_1_1_reconcilliator_acd13acae07096607017b9ea8391bd471}} 
+\index{ModelReconciliator.Reconcilliator@{ModelReconciliator.Reconcilliator}!decisionModule@{decisionModule}}
+\index{decisionModule@{decisionModule}!ModelReconciliator.Reconcilliator@{ModelReconciliator.Reconcilliator}}
+\doxysubsubsection{\texorpdfstring{decisionModule()}{decisionModule()}}
+{\footnotesize\ttfamily def Model\+Reconciliator.\+Reconcilliator.\+decision\+Module (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Evaluates output from pathfinding model and object recognition model and generates an arra. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & nn\+Input\+Data -\/ A preprocessed frame that is used to compute steering angle by NN path\+Finding model. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_model_reconciliator_1_1_reconcilliator_a65cb2dc1ed6e09c444f2de05a1d6ec8b}\label{class_model_reconciliator_1_1_reconcilliator_a65cb2dc1ed6e09c444f2de05a1d6ec8b}} 
+\index{ModelReconciliator.Reconcilliator@{ModelReconciliator.Reconcilliator}!generateOutput@{generateOutput}}
+\index{generateOutput@{generateOutput}!ModelReconciliator.Reconcilliator@{ModelReconciliator.Reconcilliator}}
+\doxysubsubsection{\texorpdfstring{generateOutput()}{generateOutput()}}
+{\footnotesize\ttfamily def Model\+Reconciliator.\+Reconcilliator.\+generate\+Output (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{nn\+Input\+Data }\end{DoxyParamCaption})}
+
+
+
+Calls input manager, decision module function and retunrs output ready to be fed to the car. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & nn\+Input\+Data -\/ A preprocessed frame that is used to compute steering angle by NN path\+Finding model. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_model_reconciliator_1_1_reconcilliator_ab4bfae02bf938ead57e444e75002fea5}\label{class_model_reconciliator_1_1_reconcilliator_ab4bfae02bf938ead57e444e75002fea5}} 
+\index{ModelReconciliator.Reconcilliator@{ModelReconciliator.Reconcilliator}!inputManager@{inputManager}}
+\index{inputManager@{inputManager}!ModelReconciliator.Reconcilliator@{ModelReconciliator.Reconcilliator}}
+\doxysubsubsection{\texorpdfstring{inputManager()}{inputManager()}}
+{\footnotesize\ttfamily def Model\+Reconciliator.\+Reconcilliator.\+input\+Manager (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{nn\+Input\+Data }\end{DoxyParamCaption})}
+
+
+
+Uses the Neural Network to compute the data for a given frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & nn\+Input\+Data -\/ A preprocessed frame that is used to compute steering angle by NN path\+Finding model. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/Model\+Reconciliator.\+py\end{DoxyCompactItemize}
