@@ -18,9 +18,9 @@ cv2.createTrackbar('V Higher','marking',255,255,nothing)
 
 while(1):
    # _,img = camera.read()
-    img = cv2.imread("IMG_2774.jpg", cv2.IMREAD_COLOR)
+    img = cv2.imread("/home/senior-design/Documents/data/9-21 Dylan-3/IMG__1692_0_1.png", cv2.IMREAD_COLOR)
     #img = cv2.flip(img,1)
-    scale_percent = 24 # percent of original size
+    scale_percent = 100 # percent of original size
     width = int(img.shape[1] * scale_percent / 100)
     height = int(img.shape[0] * scale_percent / 100)
     dim = (width, height)
