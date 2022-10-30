@@ -237,7 +237,7 @@ if __name__ == '__main__':
 
     ip = ImageProcessor(True, True)
 
-    path = "C:/usr/training/"
+    path = "/home/senior-design/Documents/data/9-21 Dylan-2/"
 
     currentSteeringAngle = 90
 
