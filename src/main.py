@@ -81,7 +81,7 @@ class AVI:
 
         # NOTE: command structure (list)
         #       command[0] - steering angle (float)
-        #       command[1] - motor command (1 = go, 0 = stop)
+        #       command[1] - motor command (1 = go, 0 = stop) <- TODO: should always be 1 until we get to object recognition
         #       command[2] - speed (float) <- TODO: implemented once if we get to object recognition
         commands = [None] * 3
         commands[2] = initialSpeed
