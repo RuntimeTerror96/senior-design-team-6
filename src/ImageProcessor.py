@@ -291,7 +291,7 @@ if __name__ == '__main__':
 
     # ip = ImageProcessor(True, True)
 
-    path = "/home/senior-design/Documents/data/9-21 Dylan-2/"
+    # path = "/home/senior-design/Documents/data/9-21 Dylan-2/"
 
     # currentSteeringAngle = 90
 
@@ -325,4 +325,4 @@ if __name__ == '__main__':
     #     # headingImg = displayHeading(frame, currentSteeringAngle)
     #     # cv.imshow("Heading", headingImg)
 
-        time.sleep(0.25)
+        # time.sleep(0.25)
