@@ -283,7 +283,17 @@ class ImageProcessor(object):
 
         return headingImg
 
-
+    ## @brief  It takes a frame from the video, removes the top half of the image, converts it to YUV color space, applies Gaussian blur, resizes it to ?#TODO?, and normalizes it
+    ## @param frame: the image to be processed 
+    ## @return: the frame after it has been converted to HSV.
+    def frameToHSV(self, frame):
+        height, _, _ = frame.shape
+        frame = frame[int(height/2):,:,:]  # remove top half of the image, as it is not relevant for lane following
+        frame = cv.cvtColor(frame, cv.COLOR_RGB2YUV)  # Nvidia model said it is best to use YUV color space
+        frame = cv.GaussianBlur(frame, (3,3), 0)
+        # frame = cv.resize(frame, (200,66)) # input image size (200,66) Nvidia model
+        # frame = frame / 255 # normalizing
+        return frame
 
 if __name__ == '__main__':
     pass
