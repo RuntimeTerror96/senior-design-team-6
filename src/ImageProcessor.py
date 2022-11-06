@@ -286,42 +286,44 @@ class ImageProcessor(object):
 
 
 if __name__ == '__main__':
-    #frame = cv.imread("../test/Image_Proc_Demo/IMG__1692_0_1.png")
+    pass
+    # #frame = cv.imread("../test/Image_Proc_Demo/IMG__1692_0_1.png")
 
-    ip = ImageProcessor(True, True)
+    # ip = ImageProcessor(True, True)
 
-    path = "C:/Users/biraj/Desktop/Training Data/training/training/"
+    # path = "C:/Users/biraj/Desktop/Training Data/training/training/"
 
-    currentSteeringAngle = 90
+    # currentSteeringAngle = 90
 
-    for file in os.listdir(path):
-        if cv.waitKey(1) == ord("q"):
-            break
+    # for file in os.listdir(path):
+    #     if cv.waitKey(1) == ord("q"):
+    #         break
 
-        # get original frame
-        frame = cv.imread(path + file)
+    #     # get original frame
+    #     frame = cv.imread(path + file)
 
-        # get lines (canny)
-        lines = ip.extractLines(frame)
+    #     # get lines (canny)
+    #     lines = ip.extractLines(frame)
 
-        # get line segments
-        # lineSegs = ip.getLineSegments(lines)
-        # if lineSegs is not None:
-        #     lineImage = ip.displayLaneLines(frame, lineSegs)
-        #     cv.imshow("Line Segments", lineImage)
+    #     # get line segments
+    #     # lineSegs = ip.getLineSegments(lines)
+    #     # if lineSegs is not None:
+    #     #     lineImage = ip.displayLaneLines(frame, lineSegs)
+    #     #     cv.imshow("Line Segments", lineImage)
 
-        # # combine line segments into one or two lane lines
-        # lanes = ip.avgSlopeIntercept(frame, lineSegs)
-        # # no lanes detected
-        # if len(lanes) == 0:
-        #     continue
-        # laneImage = ip.displayLaneLines(frame, lanes)
-        # cv.imshow("Lane Lines", laneImage)
+    #     # # combine line segments into one or two lane lines
+    #     # lanes = ip.avgSlopeIntercept(frame, lineSegs)
+    #     # # no lanes detected
+    #     # if len(lanes) == 0:
+    #     #     continue
+    #     # laneImage = ip.displayLaneLines(frame, lanes)
+    #     # cv.imshow("Lane Lines", laneImage)
 
-        # # calculate and display steering angle
-        # newSteeringAngle = calcSteeringAng(frame, lanes)
-        # currentSteeringAngle = stabilizeSteeringAng(currentSteeringAngle, newSteeringAngle, len(lanes))
-        # headingImg = displayHeading(frame, currentSteeringAngle)
-        # cv.imshow("Heading", headingImg)
+    #     # # calculate and display steering angle
+    #     # newSteeringAngle = calcSteeringAng(frame, lanes)
+    #     # currentSteeringAngle = stabilizeSteeringAng(currentSteeringAngle, newSteeringAngle, len(lanes))
+    #     # headingImg = displayHeading(frame, currentSteeringAngle)
+    #     # cv.imshow("Heading", headingImg)
 
-        time.sleep(0.25)
+    #     time.sleep(0.25)
+    
