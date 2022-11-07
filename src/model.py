@@ -99,4 +99,8 @@ class Model_obj:
     def model_save(self,file_name):
         self.model.save(file_name)
 
-
+    def load(self,path):
+        self.model = keras.models.load_model(path)
+    def model_calc_anlge(self,frame):
+        theta = self.predict(frame)
+        return theta
