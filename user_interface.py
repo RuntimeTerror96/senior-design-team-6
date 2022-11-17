@@ -27,6 +27,7 @@
 """
 import smbus
 import time
+import os
 
 i2cbus = smbus.SMBus(1)
 
@@ -82,7 +83,8 @@ LEDPINKP3 = 0XF7
 LEDWHITEP4 = 0XEF
 
 
-""" Testing Lights
+""" 
+#Testing Lights
 while True:
         turnRed()
         time.sleep(0.5)
@@ -98,11 +100,34 @@ while True:
         i2cbus.write_byte(0x20, LEDOFFPX)
         time.sleep(0.5)
 
-"""
-
 #Testing Button
-waitForButton()
+waitForSwitch()
 while True:
     if !checkOffSwitch():
         turnYellow()
-        break
+        break()
+"""
+
+isRunning = False
+
+#initial wait/start
+waitForSwitch()
+turnGreen()
+
+while True:
+    if checkOffSwitch():
+        if isRunning:
+            continue
+        else:
+            #start program
+            os.system('python main.py')
+            isRunning = True
+            turnGreen()
+    else:
+        if isRunning:
+            #kill process
+            isRunning = False
+            waitForSwitch()
+        else:
+            continue
+    
