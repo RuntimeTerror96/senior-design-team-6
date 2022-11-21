@@ -52,10 +52,13 @@ class Model_obj:
         model.add(Conv2D(36, (5, 5), strides=(2, 2), activation='elu'))
         model.add(Conv2D(48, (5, 5), strides=(2, 2), activation='elu'))
         model.add(Conv2D(64, (3, 3), activation='elu'))
+        
+        model.add(Dropout(0.2)) # not in original model. added for more robustness
         model.add(Conv2D(64, (3, 3), activation='elu'))
 
         model.add(Flatten())
         model.add(Dense(100, activation='elu'))
+        model.add(Dropout(0.2)) # not in original model. added for more robustness
         model.add(Dense(50, activation='elu'))
         model.add(Dense(10, activation='elu'))
 
@@ -82,9 +85,9 @@ class Model_obj:
         X_train, X_valid, y_train, y_valid = train_test_split( image_paths, targets, test_size=0.2)
         X_train_batch, y_train_batch = next(image_data_generator(X_train, y_train, 2, True))
 
-        self.model.fit(image_data_generator( X_train, y_train, batch_size=1, is_training=True),
+        self.model.fit(image_data_generator( X_train, y_train, batch_size=100, is_training=True),
                              steps_per_epoch=size_of_data,
-                              epochs=10
+                              epochs=5
                               )
     ## @brief Getter for model summary.
     ## @param Model_obj self - The object that the method using.     

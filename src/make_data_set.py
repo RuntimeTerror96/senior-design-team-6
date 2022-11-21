@@ -33,4 +33,59 @@ if __name__ == '__main__':
         save_this = path_save + filename
         img = cv.imwrite(save_this,frame)
         index = index + 1 
+        
+        
+    path = '/home/senior-design/Documents/data/9-21 Dylan-3/'
+
+
+    for file in os.listdir(path):
+        if cv.waitKey(1) == ord("q"):
+            break
+
+        # get original frame
+        frame = cv.imread(path + file)
+
+        # get lines (canny)
+        lines = ip.extractLines(frame)
+
+        # get line segments
+        lineSegs = ip.getLineSegments(lines)
+
+        # combine line segments into one or two lane lines
+        lanes = avgSlopeIntercept(frame, lineSegs)
+
+        # calculate and display steering angle
+        newSteeringAngle = calcSteeringAng(frame, lanes)
+        currentSteeringAngle = stabilizeSteeringAng(currentSteeringAngle, newSteeringAngle, len(lanes))
+        filename = "IMG__"+str(index)+"_"+str(currentSteeringAngle)+".png" 
+        save_this = path_save + filename
+        img = cv.imwrite(save_this,frame)
+        index = index + 1 
+        
+    path = '/home/senior-design/Documents/data/9-21 Dylan-1/'
+
+    for file in os.listdir(path):
+        if cv.waitKey(1) == ord("q"):
+            break
+
+        # get original frame
+        frame = cv.imread(path + file)
+
+        # get lines (canny)
+        lines = ip.extractLines(frame)
+
+        # get line segments
+        lineSegs = ip.getLineSegments(lines)
+
+        # combine line segments into one or two lane lines
+        lanes = avgSlopeIntercept(frame, lineSegs)
+
+        # calculate and display steering angle
+        newSteeringAngle = calcSteeringAng(frame, lanes)
+        currentSteeringAngle = stabilizeSteeringAng(currentSteeringAngle, newSteeringAngle, len(lanes))
+        filename = "IMG__"+str(index)+"_"+str(currentSteeringAngle)+".png" 
+        save_this = path_save + filename
+        img = cv.imwrite(save_this,frame)
+        index = index + 1 
+
 

@@ -30,7 +30,7 @@ import numpy as np
 
 def my_imread(image_path):
     image = cv2.imread(image_path)
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    #image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     return image
 def get_data():
     data_dir = '/home/senior-design/Documents/data2/'
@@ -62,7 +62,7 @@ def image_data_generator(image_paths, targets, batch_size, is_training):
             image = my_imread(image_paths[random_index])
             target = targets[random_index]
 
-            image = img_preprocess(image)
+            image = test_process(image)
             batch_images.append(image)
             batch_targets.append(target)
 
@@ -71,20 +71,33 @@ def image_data_generator(image_paths, targets, batch_size, is_training):
 def img_preprocess(frame):
     into_hsv =cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)
 
-    L_limit=np.array([0,50,50],np.uint8) # setting the orange lower limit
-    U_limit=np.array([30,255,255],np.uint8) # setting the orange upper limit
-
+    
+    L_limit = np.array([88,25,208],np.uint8) # setting the orange lower limit
+    U_limit = np.array([136,255,255],np.uint8) # setting the orange upper limit
+ 
     o_mask=cv2.inRange(into_hsv,L_limit,U_limit)
     orange=cv2.bitwise_and(frame,frame,mask=o_mask)
 
     lines = cv2.Canny(o_mask, 200, 400)
 
-    cv2.imwrite("lab_test_hsv.png",into_hsv)
-    cv2.imwrite("lab_test_mask.png",o_mask)
-    cv2.imwrite("lab_test_orange_detection.png",orange)
-    cv2.imwrite("lab_test_line_detected.png",lines)
+    #cv2.imwrite("lab_test_hsv.png",into_hsv)
+    #cv2.imwrite("lab_test_mask.png",o_mask)
+    #cv2.imwrite("lab_test_orange_detection.png",orange)
+    #cv2.imwrite("lab_test_line_detected.png",lines)
 
 
     orange = cv2.resize(orange, (200,66))
     orange = orange / 255
+    
+    cv2.imwrite("lab_test_hsv.png",into_hsv)
     return orange
+
+def test_process(image):
+    height, _, _ = image.shape
+   # image = image[int(height/2):,:,:]  # remove top half of the image, as it is not relavant for lane followingUUimage = cv2.cvtColor(image, cv2.COLOR_RGB2YUV)  # Nvidia model said it is best to use YUV color space
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2YUV)  # Nvidia model said it is best to use YUV color space
+    image = cv2.resize(image, (200,66)) # input image size (200,66) Nvidia model
+    image = image / 255 # normalizing, the processed image becomes black for some reason.  do we need this?
+   # cv2.imwrite("test.png",image)
+    return image
+
