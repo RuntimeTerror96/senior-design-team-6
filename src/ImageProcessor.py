@@ -289,10 +289,10 @@ class ImageProcessor(object):
     def frameToHSV(self, frame):
         height, _, _ = frame.shape
         frame = frame[int(height/2):,:,:]  # remove top half of the image, as it is not relevant for lane following
-        frame = cv.cvtColor(frame, cv.COLOR_RGB2YUV)  # Nvidia model said it is best to use YUV color space
+        frame = cv.cvtColor(frame, cv.COLOR_BGR2YUV)  # Nvidia model said it is best to use YUV color space
         frame = cv.GaussianBlur(frame, (3,3), 0)
-        # frame = cv.resize(frame, (200,66)) # input image size (200,66) Nvidia model
-        # frame = frame / 255 # normalizing
+        frame = cv.resize(frame, (66,200)) # input image size (200,66) Nvidia model
+        frame = frame / 255 # normalizing
         return frame
 
 if __name__ == '__main__':
