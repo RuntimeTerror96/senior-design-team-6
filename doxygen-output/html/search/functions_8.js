@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['map_0',['map',['../class_sun_founder___pi_car_1_1picar_1_1_sun_founder___p_c_a9685_1_1_p_c_a9685_1_1_p_w_m.html#ad2a354da5ac8c30be622b4c9cea3b25d',1,'SunFounder_PiCar::picar::SunFounder_PCA9685::PCA9685::PWM']]],
-  ['mymethod_1',['myMethod',['../classdoxygen-example_1_1_my_class.html#aa24e4167c283c5a7b6db5b8680c6587a',1,'doxygen-example::MyClass']]]
+  ['keypressevent_153',['keyPressEvent',['../classclient_1_1_running_screen.html#a790c30dcc5b138929120409a5c8c22a5',1,'client.RunningScreen.keyPressEvent()'],['../classclient_1_1_calibrate_screen.html#a7dbdf17d5b7bf0c93815f8db99a87b63',1,'client.CalibrateScreen.keyPressEvent()']]],
+  ['keyreleaseevent_154',['keyReleaseEvent',['../classclient_1_1_running_screen.html#a46a937dc4be75d93277b885e9d57bdd2',1,'client::RunningScreen']]]
 ];

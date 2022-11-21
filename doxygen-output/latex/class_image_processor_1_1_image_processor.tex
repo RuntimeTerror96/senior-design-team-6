@@ -1,0 +1,84 @@
+\hypertarget{class_image_processor_1_1_image_processor}{}\doxysection{Image\+Processor.\+Image\+Processor Class Reference}
+\label{class_image_processor_1_1_image_processor}\index{ImageProcessor.ImageProcessor@{ImageProcessor.ImageProcessor}}
+
+
+This class does the image processing.  
+
+
+Inheritance diagram for Image\+Processor.\+Image\+Processor\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_image_processor_1_1_image_processor}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{class_image_processor_1_1_image_processor_aca9e058a03d1f4bc8cb099800f545ffc}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, show\+Images=False, debug=False)
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_image_processor_1_1_image_processor_af1e10c995f3b994f53991054b783bba7}{extract\+Lines}} (self, frame)
+\begin{DoxyCompactList}\small\item\em Processes an image to detect the lines of tape. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image_processor_1_1_image_processor_a4a00bd86c958d1c9ec6c606c1c7fc37c}\label{class_image_processor_1_1_image_processor_a4a00bd86c958d1c9ec6c606c1c7fc37c}} 
+def {\bfseries mask\+Image} (self, frame)
+\item 
+\mbox{\Hypertarget{class_image_processor_1_1_image_processor_a94a8a936591d590602c927fbc2a396eb}\label{class_image_processor_1_1_image_processor_a94a8a936591d590602c927fbc2a396eb}} 
+def {\bfseries get\+Line\+Segments} (self, edges)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_image_processor_1_1_image_processor_ab5fe18088e15de02e9fe97c28e461314}\label{class_image_processor_1_1_image_processor_ab5fe18088e15de02e9fe97c28e461314}} 
+{\bfseries show\+Images}
+\item 
+\mbox{\Hypertarget{class_image_processor_1_1_image_processor_a7a4a66dba5eae36ca27c3d48135b5325}\label{class_image_processor_1_1_image_processor_a7a4a66dba5eae36ca27c3d48135b5325}} 
+{\bfseries debug}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class does the image processing. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_image_processor_1_1_image_processor_aca9e058a03d1f4bc8cb099800f545ffc}\label{class_image_processor_1_1_image_processor_aca9e058a03d1f4bc8cb099800f545ffc}} 
+\index{ImageProcessor.ImageProcessor@{ImageProcessor.ImageProcessor}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!ImageProcessor.ImageProcessor@{ImageProcessor.ImageProcessor}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def Image\+Processor.\+Image\+Processor.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{show\+Images = {\ttfamily False},  }\item[{}]{debug = {\ttfamily False} }\end{DoxyParamCaption})}
+
+
+
+Default constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bool} & show\+Images -\/ flag for showing images (i.\+e. during testing or demo) \\
+\hline
+{\em bool} & debug -\/ flag for logging debug info to the console \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_image_processor_1_1_image_processor_af1e10c995f3b994f53991054b783bba7}\label{class_image_processor_1_1_image_processor_af1e10c995f3b994f53991054b783bba7}} 
+\index{ImageProcessor.ImageProcessor@{ImageProcessor.ImageProcessor}!extractLines@{extractLines}}
+\index{extractLines@{extractLines}!ImageProcessor.ImageProcessor@{ImageProcessor.ImageProcessor}}
+\doxysubsubsection{\texorpdfstring{extractLines()}{extractLines()}}
+{\footnotesize\ttfamily def Image\+Processor.\+Image\+Processor.\+extract\+Lines (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{frame }\end{DoxyParamCaption})}
+
+
+
+Processes an image to detect the lines of tape. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & frame\+: an image to be processed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+image lines\+: a grayscale, edge-\/detected image 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/Image\+Processor.\+py\end{DoxyCompactItemize}

@@ -8,39 +8,63 @@ This class contains driver code for interfacing with the camera.
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-def \mbox{\hyperlink{class_camera_1_1_camera_a2e748aec0f8fe4bd03ea63e55bf5627b}{\+\_\+\+\_\+new\+\_\+\+\_\+}} (cls)
-\begin{DoxyCompactList}\small\item\em Default constructor enforcing the singleton pattern. \end{DoxyCompactList}\end{DoxyCompactItemize}
+def \mbox{\hyperlink{class_camera_1_1_camera_adacc2513c80a138089e905ef7345801a}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, cam\+Src=0)
+\begin{DoxyCompactList}\small\item\em Initialize the camera object and setup the stream. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_camera_1_1_camera_a0035c514b34b0fbb23d35628adc8e565}{start\+Camera}} (self)
+\begin{DoxyCompactList}\small\item\em Spawns a new thread to run the camera stream. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_camera_1_1_camera_aac48f0283726c61596c6e15495a4fa00}\label{class_camera_1_1_camera_aac48f0283726c61596c6e15495a4fa00}} 
+def \mbox{\hyperlink{class_camera_1_1_camera_aac48f0283726c61596c6e15495a4fa00}{capture\+Frame}} (self)
+\begin{DoxyCompactList}\small\item\em Reads (captures) a frame from the stream. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_camera_1_1_camera_a2f101632d8898ff9a4e379e99a91b9b6}\label{class_camera_1_1_camera_a2f101632d8898ff9a4e379e99a91b9b6}} 
+def \mbox{\hyperlink{class_camera_1_1_camera_a2f101632d8898ff9a4e379e99a91b9b6}{stop\+Camera}} (self)
+\begin{DoxyCompactList}\small\item\em Stops the camera stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_camera_1_1_camera_a75ad18300323091000dd197c6a6c0426}\label{class_camera_1_1_camera_a75ad18300323091000dd197c6a6c0426}} 
-{\bfseries instance}
+\mbox{\Hypertarget{class_camera_1_1_camera_aff27686fbde11860e16ccb2f9f0ca9be}\label{class_camera_1_1_camera_aff27686fbde11860e16ccb2f9f0ca9be}} 
+{\bfseries stream}
+\item 
+\mbox{\Hypertarget{class_camera_1_1_camera_a995665f6616d364a2ee343542dba0100}\label{class_camera_1_1_camera_a995665f6616d364a2ee343542dba0100}} 
+{\bfseries stopped}
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 This class contains driver code for interfacing with the camera. 
 
-\mbox{\hyperlink{class_camera_1_1_camera}{Camera}} is a singleton class so only one istance of a \mbox{\hyperlink{class_camera_1_1_camera}{Camera}} object can be created. This class contains all needed functions to connect to and interface with the camera. 
+This class contains all needed functions to connect to and interface with the camera. 
 
-\doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_camera_1_1_camera_a2e748aec0f8fe4bd03ea63e55bf5627b}\label{class_camera_1_1_camera_a2e748aec0f8fe4bd03ea63e55bf5627b}} 
-\index{Camera.Camera@{Camera.Camera}!\_\_new\_\_@{\_\_new\_\_}}
-\index{\_\_new\_\_@{\_\_new\_\_}!Camera.Camera@{Camera.Camera}}
-\doxysubsubsection{\texorpdfstring{\_\_new\_\_()}{\_\_new\_\_()}}
-{\footnotesize\ttfamily def Camera.\+Camera.\+\_\+\+\_\+new\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{cls }\end{DoxyParamCaption})}
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_camera_1_1_camera_adacc2513c80a138089e905ef7345801a}\label{class_camera_1_1_camera_adacc2513c80a138089e905ef7345801a}} 
+\index{Camera.Camera@{Camera.Camera}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!Camera.Camera@{Camera.Camera}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def Camera.\+Camera.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{cam\+Src = {\ttfamily 0} }\end{DoxyParamCaption})}
 
 
 
-Default constructor enforcing the singleton pattern. 
+Initialize the camera object and setup the stream. 
 
-If a \mbox{\hyperlink{class_camera_1_1_camera}{Camera}} object already exists, this function returns a reference to that object. Else, it creates a new \mbox{\hyperlink{class_camera_1_1_camera}{Camera}} object. 
+
 \begin{DoxyParams}{Parameters}
-{\em \mbox{\hyperlink{class_camera_1_1_camera}{Camera}}} & cls -\/ The object being created (leave this blank when calling the function) \\
+{\em Int} & cam\+Src -\/ the identifier of the camera to be used. This will likely always be 0 \\
 \hline
 \end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_camera_1_1_camera_a0035c514b34b0fbb23d35628adc8e565}\label{class_camera_1_1_camera_a0035c514b34b0fbb23d35628adc8e565}} 
+\index{Camera.Camera@{Camera.Camera}!startCamera@{startCamera}}
+\index{startCamera@{startCamera}!Camera.Camera@{Camera.Camera}}
+\doxysubsubsection{\texorpdfstring{startCamera()}{startCamera()}}
+{\footnotesize\ttfamily def Camera.\+Camera.\+start\+Camera (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Spawns a new thread to run the camera stream. 
+
 \begin{DoxyReturn}{Returns}
-\mbox{\hyperlink{class_camera_1_1_camera}{Camera}} cls -\/ A \mbox{\hyperlink{class_camera_1_1_camera}{Camera}} object 
+The camera object running in the new thread. 
 \end{DoxyReturn}
 
 

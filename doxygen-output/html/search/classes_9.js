@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['runningscreen_0',['RunningScreen',['../classclient_1_1_running_screen.html',1,'client']]]
+  ['queryimage_112',['QueryImage',['../classclient_1_1_query_image.html',1,'client']]]
 ];

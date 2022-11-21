@@ -1,13 +1,13 @@
 var searchData=
 [
-  ['templatesconfig_0',['TemplatesConfig',['../classremote__control_1_1templates_1_1apps_1_1_templates_config.html',1,'remote_control::templates::apps']]],
-  ['test_1',['test',['../namespace_sun_founder___pi_car_1_1picar_1_1_sun_founder___p_c_a9685_1_1_servo.html#a773180e8924b7bb85fcba7189a1b05ea',1,'SunFounder_PiCar::picar::SunFounder_PCA9685::Servo']]],
-  ['to_5fposition_2',['to_position',['../classremote__control_1_1driver_1_1camera_1_1_camera.html#a37c8abf278030828bee0fa6a16c42ff7',1,'remote_control::driver::camera::Camera']]],
-  ['transtopixmap_3',['transToPixmap',['../classclient_1_1_running_screen.html#a5b598d0bd6af29fef9c30550234c26ee',1,'client::RunningScreen']]],
-  ['turn_4',['turn',['../class_sun_founder___pi_car_1_1picar_1_1front__wheels_1_1_front___wheels.html#ab1c497e22e1bc3d03b4e79d0225f873c',1,'SunFounder_PiCar::picar::front_wheels::Front_Wheels']]],
-  ['turn_5fdown_5',['turn_down',['../classremote__control_1_1driver_1_1camera_1_1_camera.html#a9b352764ddf82a9004afabc17d2f5585',1,'remote_control::driver::camera::Camera']]],
-  ['turn_5fleft_6',['turn_left',['../classremote__control_1_1driver_1_1camera_1_1_camera.html#a74f12eb9982731a7275e5c3d36e3ebe4',1,'remote_control.driver.camera.Camera.turn_left()'],['../class_sun_founder___pi_car_1_1picar_1_1front__wheels_1_1_front___wheels.html#a56eeea12c948c93262ed3c6c0d2ed9ad',1,'SunFounder_PiCar.picar.front_wheels.Front_Wheels.turn_left()']]],
-  ['turn_5fright_7',['turn_right',['../classremote__control_1_1driver_1_1camera_1_1_camera.html#a9cd8fa90651c595ac5e2eee96e4589a5',1,'remote_control.driver.camera.Camera.turn_right()'],['../class_sun_founder___pi_car_1_1picar_1_1front__wheels_1_1_front___wheels.html#ae74d51fe4cc04ff94bf60c0feffe01ee',1,'SunFounder_PiCar.picar.front_wheels.Front_Wheels.turn_right(self)']]],
-  ['turn_5fstraight_8',['turn_straight',['../class_sun_founder___pi_car_1_1picar_1_1front__wheels_1_1_front___wheels.html#a183e163cf1306aae73860db9ae24dc96',1,'SunFounder_PiCar::picar::front_wheels::Front_Wheels']]],
-  ['turn_5fup_9',['turn_up',['../classremote__control_1_1driver_1_1camera_1_1_camera.html#a2820f9f4ec2819f21a9abfdffee21b43',1,'remote_control::driver::camera::Camera']]]
+  ['camera_51',['camera',['../namespaceremote__control_1_1driver_1_1camera.html',1,'remote_control::driver']]],
+  ['ready_52',['ready',['../class_sun_founder___pi_car_1_1picar_1_1back__wheels_1_1_back___wheels.html#a5b8f40093ebd6c8004ea9fb53ffc1508',1,'SunFounder_PiCar.picar.back_wheels.Back_Wheels.ready()'],['../class_sun_founder___pi_car_1_1picar_1_1front__wheels_1_1_front___wheels.html#a3d9b5caa489a336ca2b124d7122cb851',1,'SunFounder_PiCar.picar.front_wheels.Front_Wheels.ready()'],['../classremote__control_1_1driver_1_1camera_1_1_camera.html#a84bb77019e10ea981539af61a533b4b4',1,'remote_control.driver.camera.Camera.ready()']]],
+  ['reconcilliator_53',['Reconcilliator',['../class_model_reconciliator_1_1_reconcilliator.html',1,'ModelReconciliator']]],
+  ['reflash_5fframe_54',['reflash_frame',['../classclient_1_1_running_screen.html#ae999661f0556284bb29c8c615d8fd895',1,'client::RunningScreen']]],
+  ['runningscreen_55',['RunningScreen',['../classclient_1_1_running_screen.html',1,'client']]],
+  ['settings_56',['settings',['../namespaceremote__control_1_1settings.html',1,'remote_control']]],
+  ['stream_57',['stream',['../namespaceremote__control_1_1driver_1_1stream.html',1,'remote_control::driver']]],
+  ['urls_58',['urls',['../namespaceremote__control_1_1urls.html',1,'remote_control']]],
+  ['views_59',['views',['../namespaceremote__control_1_1views.html',1,'remote_control']]],
+  ['wsgi_60',['wsgi',['../namespaceremote__control_1_1wsgi.html',1,'remote_control']]]
 ];
