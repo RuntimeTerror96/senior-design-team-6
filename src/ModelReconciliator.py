@@ -33,17 +33,18 @@ class Reconcilliator:
     ## @param Keras.Model pathFindingModel - the model is used to compute directions to obtain steering angle for the vechicle.
     ## @param Keras.Model objDetectionModel - the model is used to detect objects and signs. #TODO: after completing Obj detection Layer 
     def __init__(self, pathFindingModel, objDetectionModel = None) -> None:
-        pass
+        self.pathFindingModel  =  pathFindingModel
+        self.objDetectionModel =  objDetectionModel
         
 
     ## @brief Uses the Neural Network to compute the data for a given frame.
     ## @param type nnInputData - A preprocessed frame that is used to compute steering angle by NN pathFinding model.
     def inputManager(self, nnInputData):
+        steeringAngle = self.pathFindingModel.predict(nnInputData)[0]
         #TODO
         #objDetection =  self.pathFindingModel.predict(nnInputData)[0]
         #return steeringAngle, objDetection
-        # return steeringAngle
-        pass
+        return steeringAngle
 
     ## @brief Evaluates output from pathfinding model and object recognition model and generates an arra
     ## @param type nnInputData - A preprocessed frame that is used to compute steering angle by NN pathFinding model.
@@ -54,10 +55,11 @@ class Reconcilliator:
         pass
     
     ## @brief Calls input manager, decision module function and retunrs output ready to be fed to the car
-    ## @param type steeringAngle -Output from PathFinding Neural Network.
-    def generateOutput(self, steeringAngle):
+    ## @param type nnInputData - A preprocessed frame that is used to compute steering angle by NN pathFinding model.
+    def generateOutput(self, nnInputData):
         #Todo: IMPLEMENT Output manager Module AFTER COMPLETION OF OBJECT RECOGNIION
         #This module should take in the output from decision module and lay the outputs in form of array to be pushed 
+        steeringAngle = self.inputManager(nnInputData)
         #contruct a array in following format [Move/Halt(1/0), speed(1,2,3,4,5), steeringAngle]
         return np.array([1,2,steeringAngle]) #default [move, speed=2, steeringAngle]
     
