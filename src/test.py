@@ -67,10 +67,11 @@ def img_preprocess(frame):
 def main():
     print("\ntest is running")
     test = Model_obj()
+#    test.load("test_model.keras")
     test.make_model()
     test.get_model_summary()
     test.train_model()
-    test.model_save("test_model.keras")
+    test.model_save("test_model_11-19.keras")
 
 
 if __name__ == "__main__":
