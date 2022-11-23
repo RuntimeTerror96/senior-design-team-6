@@ -28,6 +28,7 @@ from model import Model_obj
 print("python version: ",sys.version)
 print("numpy version: ",np.__version__)
 import cv2
+from model_running import TFlite_model
 
 def my_imread(image_path):
     image = cv2.imread(image_path)
@@ -68,11 +69,11 @@ def main():
     print("\ntest is running")
     test = Model_obj()
 #    test.load("test_model.keras")
-    test.make_model()
-    test.get_model_summary()
-    test.train_model()
-    test.model_save("test_model_11-19.keras")
-
+    #test.make_model()
+    #test.get_model_summary()
+    #test.train_model()
+    #test.model_save("test_model_11-19.keras")
+    
 
 if __name__ == "__main__":
     sys.exit(main())

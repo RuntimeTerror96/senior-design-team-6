@@ -107,3 +107,9 @@ class Model_obj:
     def model_calc_anlge(self,frame):
         theta = self.predict(frame)
         return theta
+    def convert_model_to_lite(self, filename):
+        TF_LITE_FILE_NAME = filename
+        tf_lite_converter = tf.lite.TFLiteConverter.from_keras_model(self.model)
+        tflite_model = tf_lite_converter.convert()
+        open(TF_LITE_FILE_NAME, "wb").write(tflite_model)
+        self.model = tflite_model
